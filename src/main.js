@@ -33,8 +33,8 @@ api.mpdata({params:parseQueryString()})
   })
 
 window.addEventListener('message',(e)=>{
-  console.log(接受信息);
-  console.log(e);
+  // console.log('接受信息');
+  // console.log(e);
   switch (e.type){
   case 'addTab':
     store.commit('SET_ADDTAB',tab)
