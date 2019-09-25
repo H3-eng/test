@@ -25,10 +25,18 @@ function parseQueryString(url){
 api.mpdata({params:parseQueryString()})
   .then(res=>{
     store.commit('saveMpData',res)
+    // console.log(fpa.getSysInfo());
     new Vue({
       store,
       render: h => h(App)
-    }).$mount("#app")
+    }).$mount("#mainProject")
   })
+
+window.addEventListener('addTab',tab=>{
+  store.commit('SET_ADDTAB',tab)
+})
+window.addEventListener('getSysInfo',()=>{
+  return store.getters.getMpData
+})
 
 

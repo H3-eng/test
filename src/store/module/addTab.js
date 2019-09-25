@@ -85,7 +85,6 @@ const mutations = {
       }
     }
     state.tabList = state.tabList.filter(f => f.name != name);
-    console.log(state.tabList)
   }
 }
 
