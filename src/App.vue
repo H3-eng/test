@@ -9,7 +9,7 @@ import "normalize.css";
 import "@/assets/scss/flex"
 import Home from '_p/home/home.vue'
 export default {
-  name: "App"
+  name: "App",
   components:{Home}
 }
 </script>
