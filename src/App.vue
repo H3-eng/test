@@ -1,7 +1,7 @@
 <template>
     <div id="mainProject">
 <!--        <home></home>-->
-        <iframe src="http://localhost:8089" frameborder="0"></iframe>
+        <iframe src="http://192.168.10.126/fpamap" frameborder="0"></iframe>
     </div>
 </template>
 
