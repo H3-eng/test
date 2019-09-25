@@ -40,7 +40,7 @@ window.addEventListener('message',(e)=>{
     store.commit('SET_ADDTAB',tab)
     break
   case 'getInfo':
-    document.getElementById(e.id).contentWindow.postMessage(store.getters.getMpData)
+    document.getElementById(e.data.id).contentWindow.postMessage(store.getters.getMpData)
     break
   default :'getInfo'
   }
