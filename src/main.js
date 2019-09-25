@@ -32,11 +32,18 @@ api.mpdata({params:parseQueryString()})
     }).$mount("#mainProject")
   })
 
-window.addEventListener('addTab',tab=>{
-  store.commit('SET_ADDTAB',tab)
-})
-window.addEventListener('getSysInfo',()=>{
-  return store.getters.getMpData
+window.addEventListener('message',(e)=>{
+  console.log(接受信息);
+  console.log(e);
+  switch (e.type){
+  case 'addTab':
+    store.commit('SET_ADDTAB',tab)
+    break
+  case 'getInfo':
+    document.getElementById(e.id).contentWindow.postMessage(store.getters.getMpData)
+    break
+  default :'getInfo'
+  }
 })
 
 
