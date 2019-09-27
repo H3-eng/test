@@ -69,6 +69,7 @@ const mutations = {
 
   //tab 关闭
   [types.SET_CLOSETAB](state, name) {
+    console.log(name);
     let tab = state.tabList.filter(f => f.name == name)[0];
     let index = state.tabList.indexOf(tab);
     if (index == 0) {

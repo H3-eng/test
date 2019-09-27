@@ -42,7 +42,7 @@
             <sg-main>
                 <sg-row class="nav-list">
                     <sg-col :column="12">
-                        <sg-tab type="card" closable :value="active">
+                        <sg-tab type="card" closable :value="active" @on-tab-remove="tabRemove" @on-click="setActive">
                             <sg-tab-pane v-for="item in tabs" :closable="item.closable" :label="item.label" :name="item.name"
                                          :key="item.moduleId">
                                 <keep-alive>
@@ -71,6 +71,11 @@ export default {
       active:'active'
     })
   },
+  watch:{
+    tabs(n,o){
+      console.log(n,o);
+    }
+  },
   data(){
     return{
       direction:'vertical'
@@ -81,7 +86,9 @@ export default {
   },
   methods:{
     ...mapMutations({
-      addTab:'SET_ADDTAB'
+      addTab:'SET_ADDTAB',
+      tabRemove:'SET_CLOSETAB',
+      setActive:'SET_ACTIVE'
     }),
     changeLayout(){
       switch (this.direction) {
