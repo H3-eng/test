@@ -1,4 +1,5 @@
 <template>
+  <div>
     <sg-submenu :name="item.moduleId" v-if="item.children&&item.children.length>0">
         <template slot="title">
             <sg-icon slot="subIcon" :type="item.icon"/>
@@ -21,6 +22,7 @@
         <img :src="item.imageUrl" class="icon">
         <span>{{item.name}}</span>
     </sg-menu-item>
+  </div>
 </template>
 
 <script>

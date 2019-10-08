@@ -1,6 +1,6 @@
 <template>
     <sg-container direction="vertical" class="home">
-        <sg-header>
+        <sg-header class="home-header">
             <sg-row>
                 <div class="logo">
                     <img src="http://192.168.10.9:3002/logo.png" alt="">
@@ -33,7 +33,7 @@
                 </div>
             </sg-row>
         </sg-header>
-        <sg-container :direction="direction" style="height: calc(100% - 80px);">
+        <sg-container :direction="direction" style="height: calc(100% - 50px);">
             <sg-aside v-if="direction==='horizontal'">
                 <sg-scrollbar style="height: 100%">
                 <i-menu :data="JSON.parse(mpdata.mTree).children" :horizontal="false" ></i-menu>
