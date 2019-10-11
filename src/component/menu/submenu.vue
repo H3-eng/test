@@ -2,7 +2,7 @@
   <div>
     <sg-submenu :name="item.moduleId" v-if="item.children&&item.children.length>0">
         <template slot="title">
-            <sg-icon slot="subIcon" :type="item.icon"/>
+<!--            <sg-icon slot="subIcon" :type="item.icon"/>-->
             <span slot="subTitle">{{ item.name }}</span>
         </template>
         <div v-for="items in item.children" :key="items.moduleId">
@@ -13,13 +13,13 @@
                     :key="items.name"
                     @click.native="addTab(items)"
             >
-                <sg-icon :type="item.icon"/>
+<!--                <sg-icon :type="item.icon"/>-->
                 <span slot="title">{{ items.name }}</span>
             </sg-menu-item>
         </div>
     </sg-submenu>
     <sg-menu-item :name="item.moduleId" v-else @click.native="addTab(item)">
-        <img :src="item.imageUrl" class="icon">
+<!--        <img :src="item.imageUrl" class="icon">-->
         <span>{{item.name}}</span>
     </sg-menu-item>
   </div>
