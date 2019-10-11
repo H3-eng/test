@@ -25,7 +25,6 @@ function parseQueryString(url){
 api.mpdata({params:parseQueryString()})
   .then(res=>{
     store.commit('saveMpData',res)
-    // console.log(fpa.getSysInfo());
     new Vue({
       store,
       render: h => h(App)

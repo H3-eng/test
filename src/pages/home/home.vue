@@ -25,6 +25,7 @@
                                 <sg-dropdown-item @click.native="changeSys('dmc')">数据管理中心</sg-dropdown-item>
                                 <sg-dropdown-item @click.native="changeSys('os')">运维管理中心</sg-dropdown-item>
                                 <sg-dropdown-item @click.native="changeSys('app')">应用服务中心</sg-dropdown-item>
+                                <sg-dropdown-item @click.native="changeSys('rmg')">深圳成果管理</sg-dropdown-item>
                                 <sg-dropdown-item @click.native="logoutUrl">退出登陆</sg-dropdown-item>
                             </sg-dropdown-menu>
                         </sg-dropdown>
@@ -111,6 +112,9 @@ export default {
         break
       case 'os':
         window.location.href=window.location.pathname +'?scode=os'
+        break
+      case 'rmg':
+        window.location.href=window.location.pathname +'?scode=rmg'
         break
       default:'os'
       }
