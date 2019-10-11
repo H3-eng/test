@@ -1,3 +1,4 @@
+
 .nav-list{
   margin-top: -20px;
   margin-left: -20px;
@@ -39,20 +40,24 @@
   }
 }
 .logo,.unit-wrap{
-  height: 80px;
-  line-height: 80px;
+  height: 50px;
+  line-height: 50px;
   color: #fff;
 }
 .logo{
   margin-right: 24px;
+  img{
+    width:59px;
+    height:33px;
+  }
   h1{
     display: inline-block;
     margin: 0 0 0 12px;
     color: #fff;
-    font-weight: 400;
+    font-weight: bold;
     font-size: 20px;
     vertical-align: top;
-    line-height: 80px;
+    line-height: 50px;
   }
 }
 .unit-wrap{
@@ -70,6 +75,9 @@
 }
 /deep/.sg-header{
   z-index: 1;
+  background:url('../../assets/image/logobg.png') no-repeat left bottom,
+             url('../../assets/image/headerBg.png') repeat-x;
+  padding:0 18px;
 }
 .home{
   .sg-aside{
@@ -79,4 +87,85 @@
       overflow-y: auto;
     }
   }
+}
+/deep/.home-header{
+
+    height:50px;
+    /deep/.sg-row{
+      height:50px;
+      /deep/.sg-col{
+        height:50px;
+        /deep/.sg-menu-item-active,/deep/.sg-menu-item-selected{
+          background: #152539;
+        }
+        /deep/.sg-menu-item:hover{
+          background: #152539;
+        }
+        >/deep/.sg-menu{
+          height:50px;
+          line-height: 50px;
+         
+        }
+        /deep/.sg-menu-horizental{
+          background: transparent;
+        }
+        /deep/.sg-menu-item,.sg-menu-submenu,.sg-menu-submenu-title{
+          height:50px;
+          line-height: 50px;
+        }
+      }
+    }
+    /deep/.sg-menu::-webkit-scrollbar
+    {
+        width: 6px;
+        height: 6px;
+    }
+    /deep/.sg-menu::-webkit-scrollbar-track-piece
+    {
+        background-color: #213751;
+        -webkit-border-radius: 6px;
+    }
+    /deep/.sg-menu::-webkit-scrollbar-thumb:vertical
+    {
+        height: 5px;
+        background-color: #2c4a6e;
+        -webkit-border-radius: 6px;
+    }
+    /deep/.sg-menu::-webkit-scrollbar-thumb:horizontal
+    {
+        width: 5px;
+        background-color: #2c4a6e;
+        -webkit-border-radius: 6px;
+    }
+    /deep/.sg-menu-submenu{
+      /deep/.sg-menu{
+        margin-top:14px;
+      }
+      /deep/.sg-menu-submenu-title{
+        position: relative;
+      }
+      /deep/.sg-menu-submenu-title:after{
+        display: none;
+        content:'';
+        position: absolute;
+        left:50%;
+        transform: translateX(-50%);
+        bottom:-14px;
+        z-index: 10;
+        width:14px;
+        height:8px;
+        box-sizing: border-box;
+        border-left:7px solid transparent;
+        border-right:7px solid transparent;
+        border-bottom:8px solid #213751;
+        border-top:none;
+        opacity: 0;
+      }
+      /deep/.sg-menu-submenu-title:hover::after{
+        display: block !important;
+        opacity: 1;
+        transition: opacity linear 1s;
+      }
+
+    }
 }
