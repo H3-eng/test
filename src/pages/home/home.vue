@@ -56,11 +56,13 @@
             </sg-main>
         </sg-container>
         <sg-button style="position: fixed;top: 150px;right: 15px;"
-                   @click="addTab({
-                   name:'更新日志',
-                   pageUrl:'log'
-                   })"
+                   @click="show=true"
                    type="primary">更新日志</sg-button>
+        <sg-modal v-model="show" modal-type="alert" ok-text="知道了" @on-ok="show=false">
+            <div style="width:800px;height: 550px;overflow: auto">
+                <log></log>
+            </div>
+        </sg-modal>
     </sg-container>
 </template>
 
@@ -68,9 +70,10 @@
 import IMenu from '_c/menu/index.vue'
 import {mapGetters,mapMutations} from 'vuex'
 import axios from 'axios'
+import log from '../log'
 export default {
   name: 'Home',
-  components:{IMenu},
+  components:{IMenu,log},
   computed:{
     ...mapGetters({
       mpdata:'getMpData',
@@ -85,7 +88,8 @@ export default {
   },
   data(){
     return{
-      direction:'vertical'
+      direction:'vertical',
+      show:false
     }
   },
   mounted(){
