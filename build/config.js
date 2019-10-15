@@ -17,7 +17,7 @@ module.exports={
       hostRewrite:'localhost:8081'
     },{
       //需代理的应用
-      context:['/api'],
+      context:['/logUpdate'],
       //代理目标主机
       target:'http://192.168.10.9:8090',
       //代理域名

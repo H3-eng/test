@@ -60,7 +60,7 @@
                    type="primary">更新日志</sg-button>
         <sg-modal v-model="show" modal-type="alert" ok-text="知道了" @on-ok="show=false">
             <div style="width:800px;height: 550px;overflow: auto">
-                <log></log>
+                <log v-if="show"></log>
             </div>
         </sg-modal>
     </sg-container>

@@ -23,5 +23,6 @@ export default {
 <style scoped lang="scss">
 .logtext{
     padding:20px;
+    text-align: left;
 }
 </style>
