@@ -49,7 +49,7 @@ export default {
     }
 
     .sg-menu-item * {
-        vertical-align: middle;
+        // vertical-align: middle;
     }
 
 </style>
