@@ -15,6 +15,15 @@ module.exports={
       changeOrigin: true,
       // 利用node.js重写domain,解决tomcat接口重定向（302）导致接口跨域问题
       hostRewrite:'localhost:8081'
+    },{
+      //需代理的应用
+      context:['/api'],
+      //代理目标主机
+      target:'http://192.168.10.9:8090',
+      //代理域名
+      changeOrigin: true,
+      // 利用node.js重写domain,解决tomcat接口重定向（302）导致接口跨域问题
+      hostRewrite:'localhost:8081'
     }],
     //host
     host:'localhost',

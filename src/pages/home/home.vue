@@ -55,6 +55,12 @@
                 </sg-row>
             </sg-main>
         </sg-container>
+        <sg-button style="position: fixed;top: 150px;right: 15px;"
+                   @click="addTab({
+                   name:'更新日志',
+                   pageUrl:'log'
+                   })"
+                   type="primary">更新日志</sg-button>
     </sg-container>
 </template>
 
