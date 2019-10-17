@@ -53,6 +53,10 @@ const mutations = {
           template: templ
         })
       } else {
+        if(index===''){
+          // alert('功能尚未发布')
+          return false
+        }
         component = resolve => require([`@/pages/${index}`], resolve)
       }
       state.tabList.push({

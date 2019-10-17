@@ -1,12 +1,12 @@
 <template>
   <div>
-    <sg-submenu :name="item.moduleId" v-if="item.children&&item.children.length>0">
+    <sg-submenu :name="item.moduleId" v-if="item.children&&item.children.length>0" :placement="placement">
         <template slot="title">
 <!--            <sg-icon slot="subIcon" :type="item.icon"/>-->
             <span slot="subTitle">{{ item.name }}</span>
         </template>
         <div v-for="items in item.children" :key="items.moduleId">
-            <sub-menu v-if="items.children&&item.children.length>0" :item="items"></sub-menu>
+            <sub-menu v-if="items.children&&item.children.length>0" :item="items" placement="right-start"></sub-menu>
             <sg-menu-item
                     v-else
                     :name="items.name"
@@ -31,7 +31,16 @@ import {mapMutations} from 'vuex'
 export default {
   name: "subMenu",
   props: {
-    item: {}
+    item: {
+      type:Object,
+      default: ()=>{
+        return {}
+      }
+    },
+    placement:{
+      type:String,
+      default:'bottom-start'
+    }
   },
   methods: {
     ...mapMutations({
@@ -49,7 +58,7 @@ export default {
     }
 
     .sg-menu-item * {
-        // vertical-align: middle;
+        white-space: nowrap;
     }
 
 </style>

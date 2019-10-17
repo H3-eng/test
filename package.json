@@ -67,7 +67,7 @@
     "normalize.css": "^8.0.1",
     "sha1": "^1.1.1",
     "southgis-scrollbar": "^1.0.1",
-    "southgisui": "^2.7.15",
+    "southgisui": "^2.7.16",
     "vue": "^2.6.10",
     "vue-router": "^3.0.7",
     "vuex": "^3.1.1"

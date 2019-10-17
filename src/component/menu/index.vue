@@ -1,6 +1,6 @@
 <template>
     <sg-menu :horizontal="horizontal" :active-name="active">
-        <div v-for="(item,index) in data" :key="index">
+        <div v-for="(item,index) in data" :key="index" style="flex-shrink: 0">
             <sub-menu :item="item"></sub-menu>
         </div>
     </sg-menu>

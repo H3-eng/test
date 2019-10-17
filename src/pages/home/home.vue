@@ -57,7 +57,7 @@
         </sg-container>
         <sg-button style="position: fixed;top: 150px;right: 15px;"
                    @click="show=true"
-                   type="primary">更新日志</sg-button>
+                   type="primary">更新日志（临时）</sg-button>
         <sg-modal v-model="show" modal-type="alert" ok-text="知道了" @on-ok="show=false">
             <div style="width:800px;height: 550px;overflow: auto">
                 <log v-if="show"></log>
@@ -94,6 +94,9 @@ export default {
   },
   mounted(){
     this.addTab(JSON.parse(this.mpdata.mTree).children[0])
+    setTimeout(()=>{
+      this.show=true
+    },1000)
   },
   methods:{
     ...mapMutations({
