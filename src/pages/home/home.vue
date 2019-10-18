@@ -72,8 +72,9 @@
                    type="primary">更新日志（临时）</sg-button>
         <sg-modal v-model="show" modal-type="alert" ok-text="知道了" @on-ok="show=false">
             <div style="width:800px;height: 550px;overflow: auto">
-                <iframe src="../log.html" style="display: block;width: 100%;height: 100%"
-                ></iframe>
+                <!-- <iframe src="../log.html" style="display: block;width: 100%;height: 100%"
+                ></iframe> -->
+                <log v-if='show'></log>
             </div>
         </sg-modal>
     </sg-container>
@@ -84,9 +85,10 @@
 import IMenu from '_c/menu/index.vue'
 import {mapGetters,mapMutations} from 'vuex'
 import axios from 'axios'
+import log from '../log.vue'
 export default {
   name: 'mainProject',
-  components:{IMenu},
+  components:{IMenu,log},
   computed:{
     ...mapGetters({
       mpdata:'getMpData',
