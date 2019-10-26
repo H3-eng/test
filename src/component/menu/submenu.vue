@@ -31,18 +31,25 @@ import {mapMutations} from 'vuex'
 export default {
   name: "subMenu",
   props: {
+    //菜单子项
     item: {
       type:Object,
       default: ()=>{
         return {}
       }
     },
+    //菜单悬浮展示方向
     placement:{
       type:String,
       default:'bottom-start'
     }
   },
   methods: {
+    /**
+    * @Description:通过SET_ADDTAB调用新开tab
+    * @author huangjianhui
+    * @date 2019/10/25
+    */
     ...mapMutations({
       addTab: 'SET_ADDTAB'
     })

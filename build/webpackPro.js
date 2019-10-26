@@ -1,7 +1,6 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const baseWebpackConfig = require('./webpackBase');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -14,12 +13,9 @@ function assetsPath(_path) {
 var webpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
   devtool:"cheap-source-map",
-  entry: {
-    app:'./src/main.js'
-  },
   output: {
     path: config.build.assetsRoot,
-    filename: assetsPath('js/[name].js'),
+    filename: assetsPath('js/[name].[contenthash].js'),
     publicPath:"./"
   },
   resolve: {
@@ -32,6 +28,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         sourceMap: config.build.sourcemap
       })
     ],
+    //打包时候切分node_module三方包，以及common公用包
     splitChunks: {
       cacheGroups: {
         vendors: {
@@ -58,26 +55,17 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'
     }),
-    // new BundleAnalyzerPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
+    //抽取样式
     new MiniCssExtractPlugin({
-      filename: assetsPath('css/[name].css'),
-      chunkFilename: assetsPath('css/[id].css'),
+      filename: assetsPath('css/[name].[contenthash].css'),
+      chunkFilename: assetsPath('css/[id].[contenthash].css'),
       ignoreOrder: false
-    }),
-    new HtmlWebpackPlugin({
-      title: 'index.html',
-      template: 'index.html',
-      hash: true,//防止缓存
-      minify: {
-        // 压缩选项
-        collapseWhitespace: true
-      }
     }),
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../static'),
-        to: config.build.assetsSubDir,
+        to: config.build.assetsRoot,
         ignore: ['.*']
       }
     ])
@@ -118,6 +106,7 @@ if(config.build.sourcemap){
     })
   )
 }
+//开启gzip
 if (config.build.gzip) {
   const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
@@ -130,7 +119,7 @@ if (config.build.gzip) {
     })
   )
 }
-
+//开启包分析
 if (config.build.bundleAnalyzerReport) {
   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())

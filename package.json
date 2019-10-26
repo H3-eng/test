@@ -2,7 +2,7 @@
   "name": "ibase",
   "version": "1.0.0",
   "description": "ibase",
-  "main": "src/main.js",
+  "main": "src/pages/home/home.js",
   "scripts": {
     "start": "webpack-dev-server --config build/webpackDev.js",
     "build": "node build/build.js",
@@ -26,6 +26,7 @@
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
     "babel-plugin-component": "^1.1.1",
+    "babel-runtime": "^6.26.0",
     "chalk": "^2.4.2",
     "compression-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.0.4",
@@ -67,7 +68,7 @@
     "normalize.css": "^8.0.1",
     "sha1": "^1.1.1",
     "southgis-scrollbar": "^1.0.1",
-    "southgisui": "^2.7.16",
+    "southgisui": "^2.7.18",
     "vue": "^2.6.10",
     "vue-router": "^3.0.7",
     "vuex": "^3.1.1"

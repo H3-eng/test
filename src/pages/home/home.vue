@@ -1,5 +1,7 @@
 <template>
+    <div id="mainProject">
     <sg-container direction="vertical" class="home">
+<!--        系统头部 start-->
         <sg-header class="home-header">
             <sg-row>
                 <div class="logo">
@@ -11,30 +13,39 @@
                 </sg-col>
                 <div class="unit-wrap">
                     <div class="unit">
-                        <sg-badge :value="1000" overflow-count="999" :offset="[-2,-7]">
-                            <sg-icon type="icon-xiaoxi">Badge</sg-icon>
-                        </sg-badge>
-                    </div>
-                    <div class="unit">
-                        <sg-dropdown>
+                        <sg-dropdown placement="bottom-end">
                <span>
-                   {{mpdata.realName}}
+                   {{mpdata.loginName}}
                </span>
-                            <sg-dropdown-menu slot="menu">
+                            <sg-icon type="icon-sort-desc"></sg-icon>
+                            <sg-dropdown-menu slot="menu" class="user-info">
+                                <div class="info">
+                                    <div class="letter">黄</div>
+                                    <div class="person">
+                                        <p>黄坚辉</p>
+                                        <p>{{mpdata.realName}}</p>
+                                    </div>
+                                </div>
                                 <sg-dropdown-item @click.native="changeLayout">切换布局</sg-dropdown-item>
                                 <sg-dropdown-item @click.native="changeSys('dmc')">数据管理中心</sg-dropdown-item>
                                 <sg-dropdown-item @click.native="changeSys('os')">运维管理中心</sg-dropdown-item>
                                 <sg-dropdown-item @click.native="changeSys('app')">应用服务中心</sg-dropdown-item>
                                 <sg-dropdown-item @click.native="changeSys('rmg')">深圳成果管理</sg-dropdown-item>
-                                <sg-dropdown-item @click.native="logoutUrl">退出登陆</sg-dropdown-item>
                             </sg-dropdown-menu>
                         </sg-dropdown>
+                    </div>
+                    <div class="unit" @click="logoutUrl">
+                        <sg-icon type="icon-tuichu2"></sg-icon>
                     </div>
 
                 </div>
             </sg-row>
         </sg-header>
+<!--        系统头部  end-->
+
+<!--        内容区  start-->
         <sg-container :direction="direction" style="height: calc(100% - 50px);">
+<!--            侧边栏 放置纵向菜单-->
             <sg-aside v-if="direction==='horizontal'">
                 <sg-scrollbar style="height: 100%">
                 <i-menu :data="JSON.parse(mpdata.mTree).children" :horizontal="false" ></i-menu>
@@ -55,55 +66,79 @@
                 </sg-row>
             </sg-main>
         </sg-container>
+<!--        内容去 end-->
+
+<!--        每天日志更新  不需要可删除-->
         <sg-button style="position: fixed;top: 150px;right: 15px;"
-                   @click="show=true"
+                   v-if="show"
                    type="primary">更新日志（临时）</sg-button>
         <sg-modal v-model="show" modal-type="alert" ok-text="知道了" @on-ok="show=false">
             <div style="width:800px;height: 550px;overflow: auto">
-                <log v-if="show"></log>
+                <iframe src="../log.html" style="display: block;width: 100%;height: 100%"
+                ></iframe>
             </div>
         </sg-modal>
     </sg-container>
+    </div>
 </template>
 
 <script>
 import IMenu from '_c/menu/index.vue'
 import {mapGetters,mapMutations} from 'vuex'
 import axios from 'axios'
-import log from '../log'
 export default {
-  name: 'Home',
-  components:{IMenu,log},
+  name: 'mainProject',
+  components:{IMenu},
   computed:{
+    /**
+    * @Description:
+    * @author huangjianhui
+    * @date 2019/10/25
+     * @param mpdata 系统信息
+     * @param tabs  tab列表
+     * @param active 菜单和tab选中高亮
+    */
     ...mapGetters({
       mpdata:'getMpData',
       tabs:'tabs',
       active:'active'
     })
   },
-  watch:{
-    tabs(n,o){
-      console.log(n,o);
-    }
-  },
   data(){
     return{
+      //菜单默认横向
       direction:'vertical',
+      //日志默认不显示
       show:false
     }
   },
   mounted(){
+    //进页面,默认选中第一个模块展示
     this.addTab(JSON.parse(this.mpdata.mTree).children[0])
+    //延时显示日志模块,不需要可删除
     setTimeout(()=>{
       this.show=true
     },1000)
   },
   methods:{
+    /**
+    * @Description:vuex方法
+    * @author huangjianhui
+    * @date 2019/10/25
+     * @addtab 打开tab，需要传参。具体见store-module-addTab.js
+     * @tabRemove 关闭tab
+     * @setActive 设置菜单和tab高亮选中
+    */
     ...mapMutations({
       addTab:'SET_ADDTAB',
       tabRemove:'SET_CLOSETAB',
       setActive:'SET_ACTIVE'
     }),
+    /**
+    * @Description:切换布局，横向和纵向布局
+    * @author huangjianhui
+    * @date 2019/10/26
+    */
     changeLayout(){
       switch (this.direction) {
       case "vertical":
@@ -115,6 +150,15 @@ export default {
       default:'vertical'
       }
     },
+    /**
+    * @Description:切换系统。需要传子系统代码
+     * app（应用服务中心）
+     * dmc（数据中心）
+     * os（运维中心）
+     * rmg（深圳成果管理系统）
+    * @author huangjianhui
+    * @date 2019/10/26
+    */
     changeSys(scode){
       switch (scode) {
       case 'app':
@@ -132,11 +176,24 @@ export default {
       default:'os'
       }
     },
+    /**
+    * @Description:退出登陆，注销系统并返回登录页
+    * @author huangjianhui
+    * @date 2019/10/26
+    */
     logoutUrl(){
-      axios.get(this.mpdata.logoutUrl)
-        .then(()=>{
-          window.location.href='/cas/login'
-        })
+      this.$modal.confirm({
+        title: '提示',
+        content:'确定退出系统?',
+        closable: true,
+        onOk: () => {
+          axios.get(this.mpdata.logoutUrl)
+            .then(()=>{
+              window.location.href='/login.html'
+            })
+        }
+      })
+
     }
   }
 }

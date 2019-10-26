@@ -11,11 +11,11 @@ var webpackConfig =  {
   mode: 'production',
   devtool:"cheap-source-map",
   entry: {
-    app:'./src/global.js'
+    app:'./src/assets.js'
   },
   output: {
     path: config.build.assetsRoot,
-    filename: assetsPath('js/global.js'),
+    filename: assetsPath('js/assets.js'),
     publicPath:"./"
   },
   module:{

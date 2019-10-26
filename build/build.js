@@ -8,50 +8,29 @@ const chalk = require('chalk')
 const webpack = require('webpack')
 const config = require('./config')
 const webpackConfig = require('./webpackPro')
-const webpackGlboal = require('./webpackGlobal')
 
 const spinner = ora('打包中...')
 spinner.start()
-
+//使用rm先删除已打包目录
 rm(path.join(config.build.assetsRoot), err => {
   if (err) throw err
-  if(process.argv[2]==='global'){
-    webpack(webpackGlboal, (err, stats) => {
-      spinner.stop()
-      if (err) throw err
-      process.stdout.write(stats.toString({
-        colors: true,
-        modules: false,
-        children: false,
-        chunks: false,
-        chunkModules: false
-      }) + '\n\n')
+  //删除成功开始打包
+  webpack(webpackConfig, (err, stats) => {
+    spinner.stop()
+    if (err) throw err
+    process.stdout.write(stats.toString({
+      colors: true,
+      modules: false,
+      children: false,
+      chunks: false,
+      chunkModules: false
+    }) + '\n\n')
 
-      if (stats.hasErrors()) {
-        console.log(chalk.red('  打包失败 \n'))
-        process.exit(1)
-      }
+    if (stats.hasErrors()) {
+      console.log(chalk.red('  打包失败 \n'))
+      process.exit(1)
+    }
 
-      console.log(chalk.cyan(' 打包完成.\n'))
-    })
-  }else{
-    webpack(webpackConfig, (err, stats) => {
-      spinner.stop()
-      if (err) throw err
-      process.stdout.write(stats.toString({
-        colors: true,
-        modules: false,
-        children: false,
-        chunks: false,
-        chunkModules: false
-      }) + '\n\n')
-
-      if (stats.hasErrors()) {
-        console.log(chalk.red('  打包失败 \n'))
-        process.exit(1)
-      }
-
-      console.log(chalk.cyan(' 打包完成.\n'))
-    })
-  }
+    console.log(chalk.cyan(' 打包完成.\n'))
+  })
 })

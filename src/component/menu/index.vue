@@ -13,7 +13,9 @@ import {mapGetters} from 'vuex'
 export default {
   name: "IMenu",
   props:{
+    //外部数据
     data:{},
+    //组件使用方向
     horizontal:{
       type:Boolean,
       default:true
@@ -21,6 +23,7 @@ export default {
   },
   components:{SubMenu},
   computed:{
+    //高亮选项，菜单与tab同步，通过moduleid关联
     ...mapGetters({
       active:'active'
     })
