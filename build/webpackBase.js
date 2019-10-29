@@ -2,6 +2,7 @@ const path=require('path');
 const fs=require('fs')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack =require('webpack')
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -23,21 +24,21 @@ let htmlplugin=[]
  */
 page.forEach(item=>{
   enterArr[item]=`./src/pages/${item}/${item}.js`,
-    htmlplugin.push(
-      new HtmlWebpackPlugin({
-        entryName: item,
-        filename: `${item}.html`,
-        template: `./src/pages/${item}/${item}.html`,
-        hash: true,
-        minify: {
-          removeComments: true,
-          collapseWhitespace: true,
-          removeAttributeQuotes: true
-        },
-        chunksSortMode: "dependency",
-        chunks: ['vendors','commons',item]
-      })
-    )
+  htmlplugin.push(
+    new HtmlWebpackPlugin({
+      entryName: item,
+      filename: `${item}.html`,
+      template: `./src/pages/${item}/${item}.html`,
+      hash: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      },
+      chunksSortMode: "dependency",
+      chunks: ['vendors','commons',item]
+    })
+  )
 })
 const webpackconfig= {
   entry:enterArr,
@@ -65,31 +66,34 @@ const webpackconfig= {
       options: {
         formatter: require('eslint-friendly-formatter')
       }},
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader'
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'file-loader',
-        options: {
-          limit: 10000,
-          name: assetsPath('images/[name].[hash:7].[ext]')
-        }
-      },
-      {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'file-loader',
-        options: {
-          limit: 10000,
-          name: assetsPath('fonts/[name].[hash:7].[ext]')
-        }
+    {
+      test: /\.vue$/,
+      loader: 'vue-loader'
+    },
+    {
+      test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+      loader: 'file-loader',
+      options: {
+        limit: 10000,
+        name: assetsPath('images/[name].[hash:7].[ext]')
       }
+    },
+    {
+      test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+      loader: 'file-loader',
+      options: {
+        limit: 10000,
+        name: assetsPath('fonts/[name].[hash:7].[ext]')
+      }
+    }
     ]
   },
   plugins: [
     new VueLoaderPlugin(),
-    ...htmlplugin
+    ...htmlplugin,
+    new webpack.ProvidePlugin({
+      Vue: ['vue/dist/vue.esm.js', 'default']
+    })
   ]
 }
 if(devModel){

@@ -30,6 +30,7 @@ axios.interceptors.response.use((res) => {
 
 export default {
   mpdata:(data)=>axios.get('/mainWeb/mpdata',data),
-  getLog:()=>axios.get('/logUpdate/getLog')
+  getLog:()=>axios.get('/logUpdate/getLog'),
+  login:(data)=>axios.get('/cas/oauth2.0/token',data)
 }
 

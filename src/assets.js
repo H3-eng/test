@@ -11,8 +11,8 @@ import axios from 'axios'
  * 待优化：记录未登陆前打开的页面，登陆后直接跳转到改页面
  * @author huangjianhui
  * @date 2019/10/17
- * @param:scode(子系统代码）
- * @return mpdata(系统信息)
+ * @param { String } scode(子系统代码）
+ * @return { Array } mpdata(系统信息)
 */
 export const isLogin=function (scode) {
   //去sessionStorage拿cookie尝试登陆，若失败则跳转登录页
@@ -22,14 +22,15 @@ export const isLogin=function (scode) {
       params:scode?scode:null
     })
       .then(res=>{
-        if(Object.prototype.toString.call(res.data)=="[object String]"){
-          if(res.data.indexOf('mainWeb登录页')){
-            window.location.href='/login.html'
-          }
-        }
+        console.log(res);
+
         resolve(res)
       })
       .catch(error=>{
+        console.log(error.response);
+        if(error.response.data.code===-201){
+          window.location.href='/login.html'
+        }
         reject(error.response)
       })
   })

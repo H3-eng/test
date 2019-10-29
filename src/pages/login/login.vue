@@ -28,6 +28,7 @@
 
 <script>
 import sha1 from "sha1"
+import api from '@/api'
 import {
   SgButton,SgInput,SgForm,SgFormItem,SgCheckbox
 } from 'southgisui'
@@ -57,7 +58,7 @@ export default {
       }
     }
   },
-  components:{  SgButton,SgInput,SgForm,SgFormItem,SgCheckbox},
+  components:{ SgButton,SgInput,SgForm,SgFormItem,SgCheckbox},
   methods: {
     /**
      * @Description:用户登陆系统，登陆规则详见***
@@ -68,8 +69,20 @@ export default {
       this.$refs[name].validate((valid) => {
         if (valid) {
           //登陆与前端在同一台服务器上
-          const url = `/cas/login?service=http://localhost:8081/home.html?scode=os&client_name=iboa2&code=A0${this.formValidate.username}a0z9${sha1(this.formValidate.password).toUpperCase()}`
-          window.location.href = url
+          // const url = `/cas/login?service=http://localhost:8081/home.html?scode=os&client_name=iboa2&code=A0${this.formValidate.username}a0z9${sha1(this.formValidate.password).toUpperCase()}`
+          const params={
+            grant_type:'password',
+            client_id:'sfpasys',
+            username:this.formValidate.username,
+            password:sha1(this.formValidate.password).toUpperCase()
+          }
+          api.login({params:params})
+            .then(res=>{
+              console.log(res);
+            })
+            .catch(error=>{
+              this.$msg.error(error.response.data.code.toString())
+            })
         }
       })
     }
