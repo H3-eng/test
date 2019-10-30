@@ -47,7 +47,7 @@ module.exports={
     //输出静态资源目录
     assetsSubDir:'static',
     //sourcemap配置
-    sourcemap:false,
+    sourcemap:true,
     //是否开启gzip
     gzip:false,
     //开启bundleAnalyzerReport

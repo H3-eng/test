@@ -32,7 +32,8 @@ export const isLogin=function (scode) {
       .catch(error=>{
         console.log(error.response);
         if(error.response.data.code===-201){
-          window.location.href=process.env.NODE_ENV==='production'?'/mainProject/login.html':'/login.html'
+          console.log(process.env.NODE_ENV);
+          // window.location.href=process.env.NODE_ENV==='production'?'/mainProject/login.html':'/login.html'
         }
         reject(error.response)
       })
