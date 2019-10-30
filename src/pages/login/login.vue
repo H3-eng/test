@@ -79,6 +79,8 @@ export default {
           api.login({params:params})
             .then(res=>{
               console.log(res);
+              sessionStorage.setItem('loginTicket',JSON.stringify(res))
+              window.location.href='/home.html?scode=os'
             })
             .catch(error=>{
               this.$msg.error(error.response.data.code.toString())

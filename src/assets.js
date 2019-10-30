@@ -15,8 +15,13 @@ import axios from 'axios'
  * @return { Array } mpdata(系统信息)
 */
 export const isLogin=function (scode) {
-  //去sessionStorage拿cookie尝试登陆，若失败则跳转登录页
-  document.cookie="name="+sessionStorage.getItem('cookie')
+  //去sessionStorage拿loginTicket尝试登陆，若失败则跳转登录页
+  const ticket=JSON.parse(sessionStorage.getItem('loginTicket'))
+  // eslint-disable-next-line no-debugger
+  debugger
+  if(ticket&&ticket['access_token']){
+    axios.defaults.headers['X-AToken']=ticket['access_token']
+  }
   return new Promise((resolve,reject)=>{
     axios.get('/mainWeb/mpdata',{
       params:scode?scode:null

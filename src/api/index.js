@@ -4,7 +4,12 @@ import axios from 'axios'
 // axios 配置
 axios.defaults.timeout = 10000000;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-
+const ticket=JSON.parse(localStorage.getItem('loginTicket'))
+// eslint-disable-next-line no-debugger
+debugger
+if(ticket&&ticket['access_token']){
+  axios.defaults.headers['X-AToken']=ticket['access_token']
+}
 /**
  * 请求之前可以做什么
  */

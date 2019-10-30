@@ -10,7 +10,7 @@ module.exports={
       //需代理的应用
       context:['/cas','/mainWeb','/public'],
       //代理目标主机
-      target:'http://192.168.10.129',
+      target:'http://192.168.10.126',
       //代理域名
       changeOrigin: true,
       // 利用node.js重写domain,解决tomcat接口重定向（302）导致接口跨域问题
