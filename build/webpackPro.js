@@ -12,7 +12,7 @@ function assetsPath(_path) {
 }
 var webpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
-  devtool:"cheap-source-map",
+  devtool:"source-map",
   output: {
     path: config.build.assetsRoot,
     filename: assetsPath('js/[name].[contenthash].js'),
