@@ -14,7 +14,7 @@
                                       placeholder="密码是：Admin123"></sg-input>
                         </sg-form-item>
                     </sg-form>
-                    <sg-button @click="handleLogin('formValidate')" @keyup.enter="handleLogin('formValidate')">
+                    <sg-button @click="handleLogin('formValidate')">
                         登录</sg-button>
                 </div>
                 <sg-checkbox class="keep" v-model="keep">记住账号</sg-checkbox>
@@ -87,7 +87,19 @@ export default {
             })
         }
       })
+    },
+    EnterLogin(e){
+      if (e.keyCode === 13) {
+        this.handleLogin('formValidate')
+      }
     }
+  },
+  mounted() {
+    // Enter login
+    document.addEventListener('keydown', this.EnterLogin);
+  },
+  beforeDestroy() {
+    document.removeEventListener('keydown', this.EnterLogin);
   }
 }
 </script>
