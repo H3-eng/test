@@ -1,7 +1,7 @@
 <template>
     <div class="login">
         <div class="wrap">
-<!--            <img src="@/assets/image/login/logo.png">-->
+            <img src="@/assets/image/login/logo.png">
             <p class="welcoming">欢迎您的到来</p>
             <div class="action">
                 <div class="row">
