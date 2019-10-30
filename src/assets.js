@@ -18,7 +18,6 @@ export const isLogin=function (scode) {
   //去sessionStorage拿loginTicket尝试登陆，若失败则跳转登录页
   const ticket=JSON.parse(sessionStorage.getItem('loginTicket'))
   // eslint-disable-next-line no-debugger
-  debugger
   if(ticket&&ticket['access_token']){
     axios.defaults.headers['X-AToken']=ticket['access_token']
   }
@@ -28,13 +27,12 @@ export const isLogin=function (scode) {
     })
       .then(res=>{
         console.log(res);
-
         resolve(res)
       })
       .catch(error=>{
         console.log(error.response);
         if(error.response.data.code===-201){
-          window.location.href='/login.html'
+          window.location.href=process.env.NODE_ENV==='production'?'/mainProject/login.html':'/login.html'
         }
         reject(error.response)
       })

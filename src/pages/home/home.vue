@@ -18,7 +18,7 @@
                    {{mpdata.loginName}}
                </span>
                             <sg-icon type="icon-sort-desc"></sg-icon>
-                            <sg-dropdown-menu slot="menu" class="user-info">
+                            <div slot="menu" class="user-info">
                                 <div class="info">
                                     <div class="letter">黄</div>
                                     <div class="person">
@@ -31,7 +31,7 @@
                                 <sg-dropdown-item @click.native="changeSys('os')">运维管理中心</sg-dropdown-item>
                                 <sg-dropdown-item @click.native="changeSys('app')">应用服务中心</sg-dropdown-item>
                                 <sg-dropdown-item @click.native="changeSys('rmg')">深圳成果管理</sg-dropdown-item>
-                            </sg-dropdown-menu>
+                            </div>
                         </sg-dropdown>
                     </div>
                     <div class="unit" @click="logoutUrl">
