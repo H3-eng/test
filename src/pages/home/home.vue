@@ -8,9 +8,11 @@
                     <img src="http://192.168.10.9:3002/logo.png" alt="">
                     <h1>{{mpdata.sysTitle}}</h1>
                 </div>
+                <sg-scroll>
                 <sg-col>
                     <i-menu :data="JSON.parse(mpdata.mTree).children" v-if="direction==='vertical'"></i-menu>
                 </sg-col>
+                </sg-scroll>
                 <div class="unit-wrap">
                     <div class="unit">
                         <sg-dropdown placement="bottom-end">

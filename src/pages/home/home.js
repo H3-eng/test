@@ -8,7 +8,8 @@ import {SgContainer,
   SgModal,
   SgDropdown,
   SgDropdownItem,
-  SgHeader,SgRow,SgCol,SgMenu,SgSubmenu,SgMenuItem,SgIcon,SgMain,SgTab,SgTabPane,SgButton} from 'southgisui'
+  SgHeader,SgRow,SgCol,SgMenu,SgSubmenu,SgScroll,
+  SgMenuItem,SgIcon,SgMain,SgTab,SgTabPane,SgButton} from 'southgisui'
 Vue.use(SgContainer)
 Vue.use(SgHeader)
 Vue.use(SgRow)
@@ -25,6 +26,7 @@ Vue.use(SgButton)
 Vue.use(SgModal)
 Vue.use(SgDropdown)
 Vue.use(SgDropdownItem)
+Vue.use(SgScroll)
 import {isLogin} from "@/assets";
 // 引入系统样式表
 // 设置为 false 以阻止 vue 在启动时生成生产提示。

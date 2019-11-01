@@ -1,12 +1,14 @@
 <template>
   <div>
-    <sg-submenu :name="item.moduleId" v-if="item.children&&item.children.length>0" :placement="placement">
+    <sg-submenu :name="item.moduleId" v-if="item.children&&item.children.length>0" :placement="placement" :transfer="transfer">
         <template slot="title">
 <!--            <sg-icon slot="subIcon" :type="item.icon"/>-->
             <span slot="subTitle">{{ item.name }}</span>
         </template>
         <div v-for="items in item.children" :key="items.moduleId">
-            <sub-menu v-if="items.children&&item.children.length>0" :item="items" placement="right-start"></sub-menu>
+            <sub-menu v-if="items.children&&item.children.length>0"
+                      :item="items" placement="right-start"
+                      :transfer="false"></sub-menu>
             <sg-menu-item
                     v-else
                     :name="items.name"
@@ -42,6 +44,10 @@ export default {
     placement:{
       type:String,
       default:'bottom-start'
+    },
+    transfer:{
+      type:Boolean,
+      default:true
     }
   },
   methods: {
