@@ -272,3 +272,23 @@
     color: #404040;
   }
 }
+/deep/.sg-scroll-bar{
+  height: 100%;
+  .sg-scroll-nav-container{
+    height: 100%;
+    .sg-scroll-nav-wrap{
+      height: 100%;
+      .sg-scroll-nav-scroll{
+        height: 100%;
+        .sg-scroll-nav{
+          height: 100%;
+          >.sg-menu{
+            div,li{
+              line-height: 50px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
