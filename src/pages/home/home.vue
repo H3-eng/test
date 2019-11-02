@@ -115,10 +115,6 @@ export default {
   mounted(){
     //进页面,默认选中第一个模块展示
     this.addTab(JSON.parse(this.mpdata.mTree).children[0])
-    //延时显示日志模块,不需要可删除
-    setTimeout(()=>{
-      this.show=true
-    },1000)
   },
   methods:{
     /**
