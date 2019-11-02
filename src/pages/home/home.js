@@ -9,6 +9,7 @@ import {SgContainer,
   SgDropdown,
   SgDropdownItem,
   SgHeader,SgRow,SgCol,SgMenu,SgSubmenu,SgScroll,
+  SgAside,
   SgMenuItem,SgIcon,SgMain,SgTab,SgTabPane,SgButton} from 'southgisui'
 Vue.use(SgContainer)
 Vue.use(SgHeader)
@@ -27,7 +28,11 @@ Vue.use(SgModal)
 Vue.use(SgDropdown)
 Vue.use(SgDropdownItem)
 Vue.use(SgScroll)
+Vue.use(SgAside)
 import {isLogin} from "@/assets";
+import SgScrollbar from 'southgis-scrollbar'
+Vue.component('sg-scrollbar',SgScrollbar)
+import 'southgis-scrollbar/scrollbar.css'
 // 引入系统样式表
 // 设置为 false 以阻止 vue 在启动时生成生产提示。
 Vue.config.productionTip = false

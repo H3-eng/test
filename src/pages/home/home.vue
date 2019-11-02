@@ -46,7 +46,7 @@
 <!--        内容区  start-->
         <sg-container :direction="direction" style="height: calc(100% - 50px);">
 <!--            侧边栏 放置纵向菜单-->
-            <sg-aside v-if="direction==='horizontal'">
+            <sg-aside v-if="direction==='horizontal'" style="width: 200px;">
                 <sg-scrollbar style="height: 100%">
                 <i-menu :data="JSON.parse(mpdata.mTree).children" :horizontal="false" ></i-menu>
                 </sg-scrollbar>
