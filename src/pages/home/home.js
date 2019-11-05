@@ -51,7 +51,6 @@ function parseQueryString(url){
 */
 isLogin(parseQueryString())
   .then(res=>{
-    console.log(res);
     store.commit('saveMpData',res.data)
     new Vue({
       store,

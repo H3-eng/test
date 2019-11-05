@@ -115,6 +115,8 @@ export default {
   mounted(){
     //进页面,默认选中第一个模块展示
     this.addTab(JSON.parse(this.mpdata.mTree).children[0])
+    //将addTab挂载到window上，还有更好的方法？
+    window.addTab=this.addTab
   },
   methods:{
     /**

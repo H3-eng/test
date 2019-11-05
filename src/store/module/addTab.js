@@ -45,7 +45,6 @@ const mutations = {
         component: component
       })
     }
-    console.log(state.tabList);
     state.active = value.moduleId;
   },
 
