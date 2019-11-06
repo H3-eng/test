@@ -26,14 +26,19 @@ const mutations = {
     state.active = name;
   },
 
+
   //tab 增加
   [types.SET_ADDTAB](state, value) {
     let index = value.pageUrl;
+    if(index===''){
+      alert('暂无页面')
+      return false
+    }
     let title = value.name;
     let component = null;
     if (state.tabList.filter(f => f.name == value.moduleId) == 0) {
-      let templ = '<div style="height: 100%">' +
-        '<iframe style="display: block;width:100%;height: 100%;border:0" src=' + index + '></iframe></div>'
+      let templ = `<div style="height: 100%"><iframe style="display: block;
+width:100%;height: 100%;border:0" src='${index}'></iframe></div>`
       component = Vue.component('sg-iframe', {
         template: templ
       })
@@ -44,6 +49,7 @@ const mutations = {
         closable: true,
         component: component
       })
+      console.log(new component());
     }
     state.active = value.moduleId;
   },
