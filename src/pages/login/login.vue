@@ -38,8 +38,8 @@ export default {
     return {
       //表单属性信息
       formValidate: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: 'Admin123'
       },
       //是否记住账号
       keep: false,
