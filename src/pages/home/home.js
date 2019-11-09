@@ -1,9 +1,11 @@
 import Vue from "vue"
 import App from "./home.vue"
 import store from "@/store"
-import '@/assets/scss/common.scss'
+import '@/assets/scss/base.scss'
 // 引入sgui组件库
 import "southgisui/lib/sgui-theme/index.css"
+import "southgisui/lib/sgui-theme/fpa.css"
+
 import {SgContainer,
   SgModal,
   SgDropdown,

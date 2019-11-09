@@ -49,7 +49,6 @@ width:100%;height: 100%;border:0" src='${index}'></iframe></div>`
         closable: true,
         component: component
       })
-      console.log(new component());
     }
     state.active = value.moduleId;
   },

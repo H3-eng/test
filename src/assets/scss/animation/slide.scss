@@ -1,0 +1,244 @@
+@mixin animation-slide($className, $keyframeName) {
+  @include make-motion($className, $keyframeName);
+  .#{$className}-enter-active, .#{$className}-appear {
+    opacity: 0;
+    animation-timing-function: $transition-base;
+  }
+  .#{$className}-leave-active {
+    animation-timing-function: $transition-base;
+  }
+}
+
+@mixin move-motion($className, $keyframeName) {
+  @include make-motion($className, $keyframeName);
+}
+
+
+@mixin motion-common() {
+  animation-duration: .3s;
+  animation-fill-mode: both;
+}
+
+@mixin make-motion($className, $keyframeName) {
+  .#{$className}-enter-active{
+    @include motion-common();
+    animation-name: #{$keyframeName}In;
+  }
+  .#{$className}-leave-active {
+    @include motion-common();
+    animation-name: #{$keyframeName}Out;
+  }
+}
+
+@include animation-slide(transition-drop, TransitionDrop);
+@include animation-slide(slide-up, SlideUp);
+@include animation-slide(slide-down, SlideDown);
+@include animation-slide(slide-left, SlideLeft);
+@include animation-slide(slide-right, SlideRight);
+@include move-motion(move-notice, moveNotice);
+@include move-motion(move-up, moveUp);
+@include move-motion(fade, fade);
+
+
+@keyframes TransitionDropIn {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes TransitionDropOut {
+  0% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0.8);
+  }
+}
+
+@keyframes SlideUpIn {
+  0% {
+    opacity: 0;
+    transform-origin: 0 0;
+    transform: scaleY(.8);
+  }
+  100% {
+    opacity: 1;
+    transform-origin: 0 0;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes SlideUpOut {
+  0% {
+    opacity: 1;
+    transform-origin: 0 0;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform-origin: 0 0;
+    transform: scaleY(.8);
+  }
+}
+
+@keyframes SlideDownIn {
+  0% {
+    opacity: 0;
+    transform-origin: 100% 100%;
+    transform: scaleY(.8);
+  }
+  100% {
+    opacity: 1;
+    transform-origin: 100% 100%;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes SlideDownOut {
+  0% {
+    opacity: 1;
+    transform-origin: 100% 100%;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform-origin: 100% 100%;
+    transform: scaleY(.8);
+  }
+}
+
+@keyframes SlideLeftIn {
+  0% {
+    opacity: 0;
+    transform-origin: 0% 0%;
+    transform: scaleX(.8);
+  }
+  100% {
+    opacity: 1;
+    transform-origin: 0% 0%;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes SlideLeftOut {
+  0% {
+    opacity: 1;
+    transform-origin: 0% 0%;
+    transform: scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform-origin: 0% 0%;
+    transform: scaleX(.8);
+  }
+}
+
+@keyframes SlideRightIn {
+  0% {
+    opacity: 0;
+    transform-origin: 100% 0%;
+    transform: scaleX(.8);
+  }
+  100% {
+    opacity: 1;
+    transform-origin: 100% 0%;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes SlideRightOut {
+  0% {
+    opacity: 1;
+    transform-origin: 100% 0%;
+    transform: scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform-origin: 100% 0%;
+    transform: scaleX(.8);
+  }
+}
+
+@keyframes moveNoticeIn {
+  0% {
+    opacity: 0;
+    transform-origin: 0 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform-origin: 0 0;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes moveNoticeOut {
+  0% {
+    transform-origin: 0 0;
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  70% {
+    transform-origin: 0 0;
+    transform: translateX(100%);
+    height: auto;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    opacity: 0;
+  }
+  100% {
+    transform-origin: 0 0;
+    transform: translateX(100%);
+    height: 0;
+    padding: 0;
+    margin-bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes moveUpIn {
+  0% {
+    transform: translate3d(0, -20px, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes moveUpOut {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, -20px, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
