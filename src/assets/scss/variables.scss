@@ -1,7 +1,26 @@
 @charset "UTF-8";
-$ch
 $border-normal: 1px solid #dfdfdf;
 $border-active: 1px solid #9299a1;
 $down-icon-color: #3b86e0;
 $active-background: #edf2f8;
+
+// 颜色
+$color-gray: #69738a;
+
+// 字体
+$font-size-sm: 12px;
+$font-size-md: 14px;
+$font-size-lg: 16px;
+
+// 边框
+$border-normal: 1px solid #dfdfdf;
+$border-active: 1px solid #9299a1;
+
+// 行高
+// TODO:像 1 1.5这种有没有必要写进来？
+$line-height-lg: 50px;
+
+// 搜索框
+// sg组件，根据一个项目内不同业务场景提供定制参数？
+$search-width-md: 300px;
 
