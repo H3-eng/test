@@ -10,29 +10,5 @@ $padding-sm: 10px;
 $padding-md: 20px;
 
 // flex布局
-@mixin flex-row {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-}
-@mixin flex-col {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-}
-@mixin flex-row-center {
-  @include flex-row;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  align-items: center;
-}
-@mixin flex-col-center {
-  @include flex-col;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  align-items: center;
-}
+// TODO：找个之前写的封装组件，用sg的容器组件改造下
+// 顺利的话更新下手册写法，后面直接用sg组件吧
