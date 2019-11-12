@@ -1,7 +1,6 @@
 import Vue from "vue"
 import App from "./login.vue"
 // 引入系统样式表
-import "@/assets/scss/common"
 import "./login.scss"
 import "southgisui/lib/sgui-theme/index.css";
 

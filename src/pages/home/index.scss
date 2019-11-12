@@ -57,6 +57,7 @@
 .logo {
   margin-right: 24px;
   white-space: nowrap;
+
   img {
     width: 59px;
     height: 33px;
@@ -83,34 +84,39 @@
     cursor: pointer;
     transition: background-color .3s;
     white-space: nowrap;
-    &:last-child{
+
+    &:last-child {
       position: relative;
-      >.sgui-font{
+
+      > .sgui-font {
         font-size: 20px;
         vertical-align: -4px;
       }
-      &:after{
-        content:'';
+
+      &:after {
+        content: '';
         background-color: #fff;
         width: 1px;
         height: 30px;
         position: absolute;
         left: 0;
-        top:10px;
+        top: 10px;
       }
     }
 
     &:hover {
       background-color: #2d8cf0;
     }
-    /deep/>.sg-dropdown{
-      .sg-select-dropdown{
+
+    /deep/ > .sg-dropdown {
+      .sg-select-dropdown {
         &[placement='bottom-end'] {
           transform-origin: 0 0;
         }
       }
-      /deep/.sg-dropdown-rel{
-        >i{
+
+      /deep/ .sg-dropdown-rel {
+        > i {
           vertical-align: -2px;
         }
       }
@@ -139,11 +145,13 @@
 /deep/ .home-header {
 
   height: 50px;
+  //padding-right: 0;
 
   /deep/ .sg-row {
     height: 50px;
     flex-wrap: nowrap;
-    .sg-scroll-nav-prev,.sg-scroll-nav-next{
+
+    .sg-scroll-nav-prev, .sg-scroll-nav-next {
       color: #fff;
     }
 
@@ -233,59 +241,145 @@
   }
 }
 
+.unit {
+  .sg-dropdown .sg-dropdown-rel{
+  //span {
+    > .letter {
+      width: 24px;
+      height: 24px;
+      background-color: #04be5b;
+      color: #fff;
+      line-height: 22px;
+      text-align: center;
+      display: inline-block;
+      border-radius: 24px;
+      position: relative;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top:-3px;
+        left: -3px;
+        display: block;
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+        line-height: 30px;
+        text-align: center;
+        background-color: #fff;
+        opacity: 0.15;
+        z-index: -1;
+      }
+    }
+  }
+}
+
 .user-info {
   width: 220px;
-  margin:0 20px;
+  margin: 0 20px;
   padding-bottom: 10px;
 
-  .info{
+  .info {
     display: flex;
-    padding:20px 0;
+    padding: 20px 0;
+    position: relative;
     margin-bottom: 10px;
     border-bottom: 1px solid #dfdfdf;
-    .letter{
+
+    .letter {
       width: 40px;
       height: 40px;
-      background-color: #ee6b08;
+      background-color: #04be5b;
       color: #fff;
       line-height: 40px;
       text-align: center;
       border-radius: 40px;
     }
-    .person{
+
+    .person {
       font-weight: normal;
       font-stretch: normal;
       letter-spacing: 0;
       margin-left: 15px;
-      >p{
+
+      > p {
         color: #404040;
         line-height: 20px;
-        margin:0;
-        &:last-child{
+        margin: 0;
+
+        &:last-child {
           color: #999999;
         }
       }
     }
+    .logout{
+      color: #bfc5d4;
+      //加大可点击区域
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      position: absolute;
+      right: -10px;
+      top: 17px;
+      text-align: center;
+      line-height: 50px;
+      >.sgui-font{
+        font-size: 22px;
+      }
+    }
   }
-  >li.sg-dropdown-item{
-    padding:10px;
+
+  > li.sg-dropdown-item {
+    padding: 10px;
     color: #404040;
+    *{
+      vertical-align: middle;
+    }
+    >i.icon{
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background-size: 16px 16px;
+      background-repeat: no-repeat;
+      vertical-align: -4px;
+      margin-right: 13px;
+      &.shuju{
+        background-image: url("../../assets/image/shuju.png");
+      }
+      &.yunwei{
+        background-image: url("../../assets/image/yunwei.png");
+      }
+      &.yingyong{
+        background-image: url("../../assets/image/yingyong.png");
+      }
+      &.shenzhen{
+        background-image: url("../../assets/image/shenzhen.png");
+      }
+    }
   }
 }
+
 //写法不优雅
-/deep/.sg-scroll-bar{
+/deep/ .sg-scroll-bar {
   height: 100%;
-  .sg-scroll-nav-container{
+
+  .sg-scroll-nav-container {
     height: 100%;
-    .sg-scroll-nav-wrap{
+
+    .sg-scroll-nav-wrap {
       height: 100%;
-      .sg-scroll-nav-scroll{
+
+      .sg-scroll-nav-scroll {
         height: 100%;
-        .sg-scroll-nav{
+
+        .sg-scroll-nav {
           height: 100%;
-          >.sg-menu{
-            div,li{
+
+          > .sg-menu {
+            background-color: rgba(255,255,255,0);
+            div, li {
               line-height: 50px;
+              height: 50px;
             }
           }
         }

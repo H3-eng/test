@@ -13,31 +13,41 @@
                 </sg-scroll>
                 <div class="unit-wrap">
                     <div class="unit">
-                        <sg-dropdown placement="bottom-end">
-               <span>
-                   {{mpdata.loginName}}
-               </span>
+                        <sg-dropdown placement="bottom-end" offset="15px,0">
+                   <div class="letter">{{mpdata.loginName[0]}}</div>
                             <sg-icon type="icon-sort-desc"></sg-icon>
                             <div slot="menu" class="user-info">
                                 <div class="info">
-                                    <div class="letter">黄</div>
+                                    <div class="letter">{{mpdata.loginName[0]}}</div>
                                     <div class="person">
-                                        <p>黄坚辉</p>
+                                        <p>{{mpdata.loginName}}</p>
                                         <p>{{mpdata.realName}}</p>
                                     </div>
+                                    <span class="logout" @click="logoutUrl">
+                                        <sg-icon type="icon-tuichu2"></sg-icon>
+                                    </span>
                                 </div>
-                                <sg-dropdown-item @click.native="changeLayout">切换布局</sg-dropdown-item>
-                                <sg-dropdown-item @click.native="changeSys('dmc')">数据管理中心</sg-dropdown-item>
-                                <sg-dropdown-item @click.native="changeSys('os')">运维管理中心</sg-dropdown-item>
-                                <sg-dropdown-item @click.native="changeSys('app')">应用服务中心</sg-dropdown-item>
-                                <sg-dropdown-item @click.native="changeSys('rmg')">深圳成果管理</sg-dropdown-item>
+<!--                                预留接口，切换布局-->
+<!--                                <sg-dropdown-item @click.native="changeLayout">切换布局</sg-dropdown-item>-->
+                                <sg-dropdown-item @click.native="changeSys('dmc')">
+                                    <i class="icon shuju"></i>
+                                    数据管理中心
+                                </sg-dropdown-item>
+                                <sg-dropdown-item @click.native="changeSys('os')">
+                                    <i class="icon yunwei"></i>
+                                    运维管理中心
+                                </sg-dropdown-item>
+                                <sg-dropdown-item @click.native="changeSys('app')">
+                                    <i class="icon yingyong"></i>
+                                    应用服务中心
+                                </sg-dropdown-item>
+                                <sg-dropdown-item @click.native="changeSys('rmg')">
+                                    <i class="icon shenzhen"></i>
+                                    深圳成果管理
+                                </sg-dropdown-item>
                             </div>
                         </sg-dropdown>
                     </div>
-                    <div class="unit" @click="logoutUrl">
-                        <sg-icon type="icon-tuichu2"></sg-icon>
-                    </div>
-
                 </div>
             </sg-row>
         </sg-header>

@@ -1,14 +1,17 @@
 <template>
   <div>
-    <sg-submenu :name="item.moduleId" v-if="item.children&&item.children.length>0" :placement="placement" :transfer="transfer">
+    <sg-submenu :name="item.moduleId" v-if="item.children&&item.children.length>0"
+                :placement="placement" :transfer="transfer">
         <template slot="title">
-<!--            <sg-icon slot="subIcon" :type="item.icon"/>-->
+            <img :src="item.imageUrl" class="icon" v-if="showImg">
             <span slot="subTitle">{{ item.name }}</span>
         </template>
         <div v-for="items in item.children" :key="items.moduleId">
             <sub-menu v-if="items.children&&item.children.length>0"
                       :item="items" placement="right-start"
-                      :transfer="false"></sub-menu>
+                      :transfer="false"
+                      :showImg="false"
+            ></sub-menu>
             <sg-menu-item
                     v-else
                     :name="items.name"
@@ -21,7 +24,7 @@
         </div>
     </sg-submenu>
     <sg-menu-item :name="item.moduleId" v-else @click.native="addTab(item)">
-<!--        <img :src="item.imageUrl" class="icon">-->
+        <img :src="item.imageUrl" class="icon">
         <span>{{item.name}}</span>
     </sg-menu-item>
   </div>
@@ -43,9 +46,14 @@ export default {
     //菜单悬浮展示方向
     placement:{
       type:String,
-      default:'bottom-start'
+      default:'bottom'
     },
     transfer:{
+      type:Boolean,
+      default:true
+    },
+    //是否展示功能图标，二级以上不展示
+    showImg:{
       type:Boolean,
       default:true
     }
@@ -66,8 +74,10 @@ export default {
 <style scoped lang="scss">
     .icon {
         display: inline-block;
-        width: 29px;
-        height: 28px;
+        width: 20px;
+        height: 20px;
+        vertical-align: -4px;
+        margin-right: 10px;
     }
 
     .sg-menu-item * {
