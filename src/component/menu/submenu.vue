@@ -3,14 +3,14 @@
     <sg-submenu :name="item.moduleId" v-if="item.children&&item.children.length>0"
                 :placement="placement" :transfer="transfer">
         <template slot="title">
-            <img :src="item.imageUrl" class="icon" v-if="showImg">
+            <img :src="item.imageUrl" :class="imgClass">
             <span slot="subTitle">{{ item.name }}</span>
         </template>
         <div v-for="items in item.children" :key="items.moduleId">
             <sub-menu v-if="items.children&&item.children.length>0"
                       :item="items" placement="right-start"
                       :transfer="false"
-                      :showImg="false"
+                      :isFirstL="false"
             ></sub-menu>
             <sg-menu-item
                     v-else
@@ -52,8 +52,7 @@ export default {
       type:Boolean,
       default:true
     },
-    //是否展示功能图标，二级以上不展示
-    showImg:{
+    isFirstL:{
       type:Boolean,
       default:true
     }
@@ -67,6 +66,16 @@ export default {
     ...mapMutations({
       addTab: 'SET_ADDTAB'
     })
+  },
+  computed:{
+    imgClass(){
+      return[
+        'icon',
+        {
+          'second-level':!this.isFirstL
+        }
+      ]
+    }
   }
 }
 </script>
@@ -78,6 +87,11 @@ export default {
         height: 20px;
         vertical-align: -4px;
         margin-right: 10px;
+        &.second-level{
+            width: 14px;
+            height: 14px;
+            vertical-align: -1px;
+        }
     }
 
     .sg-menu-item * {
