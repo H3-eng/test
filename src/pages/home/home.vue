@@ -95,7 +95,7 @@
 <script>
 import IMenu from '_c/menu/index.vue'
 import {mapGetters,mapMutations} from 'vuex'
-import axios from 'axios'
+// import axios from 'axios'
 export default {
   name: 'mainProject',
   components:{IMenu},
@@ -202,11 +202,13 @@ export default {
         content:'确定退出系统?',
         closable: true,
         onOk: () => {
-          axios.get(this.mpdata.logoutUrl)
-            .then(()=>{
-              window.location.href=process.env.NODE_ENV==='production'?
-                '/mainProject/login.html':'/login.html'
-            })
+          //新的方式请求什么？
+          // axios.get(this.mpdata.logoutUrl)
+          //   .then(()=>{
+          //
+          //   })
+          window.location.href=process.env.NODE_ENV==='production'?
+            '/mainProject/login.html':'/login.html'
         }
       })
 

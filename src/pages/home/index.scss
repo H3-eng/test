@@ -1,6 +1,5 @@
 
 .nav-list {
-  margin-top: -20px;
   margin-left: -20px;
   margin-right: -20px;
   background-color: #edeff1;
@@ -15,7 +14,7 @@
     }
 
     /deep/ .sg-tab-content {
-      height: calc(100vh - 92px);
+      height: calc(100vh - 109px);
       margin-top: 2px;
 
       .sg-tab-tabpane {
@@ -84,6 +83,11 @@
     cursor: pointer;
     transition: background-color .3s;
     white-space: nowrap;
+    &:hover{
+      &.last-child{
+        display: none;
+      }
+    }
 
     &:last-child {
       position: relative;
@@ -94,13 +98,13 @@
       }
 
       &:after {
-        content: '';
-        background-color: #fff;
-        width: 1px;
-        height: 30px;
-        position: absolute;
-        left: 0;
-        top: 10px;
+        //content: '';
+        //background-color: #fff;
+        //width: 1px;
+        //height: 30px;
+        //position: absolute;
+        //left: 0;
+        //top: 10px;
       }
     }
 
@@ -325,6 +329,11 @@
       line-height: 50px;
       >.sgui-font{
         font-size: 22px;
+      }
+      &:hover{
+        .sgui-font{
+          font-size: 24px;
+        }
       }
     }
   }

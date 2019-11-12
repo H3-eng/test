@@ -46,7 +46,7 @@ export default {
     //菜单悬浮展示方向
     placement:{
       type:String,
-      default:'bottom'
+      default:'bottom-start'
     },
     transfer:{
       type:Boolean,
