@@ -12,14 +12,10 @@ html,body{
   }
 }
 
-//.sg-main{
-//  padding:0;
-//  padding-left: 20px;
-//}
-.no-data {
+.noData {
   width: 100%;
   height: calc(100% - 42px);
-  background: url('../image/code-dctionary-no-data.png') no-repeat center center;
+  background: url('http://192.168.10.9:3002/bootstrap/image/code-dctionary-no-data.png') no-repeat center center;
 }
 
 //表格列表样式
@@ -53,9 +49,6 @@ html,body{
         font-size: $font-size-md;
         margin-right: $icon-spacing-sm;
       }
-    }
-    /deep/ .sg-table-tip {
-      display: none;
     }
     >.sg-table{
       border: none;

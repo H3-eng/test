@@ -134,6 +134,7 @@ export default {
     defaultTab(JSON.parse(this.mpdata.mTree).children[0])
     //将addTab挂载到window上，还有更好的方法？
     window.addTab=this.addTab
+    window.closeTab=this.tabRemove
   },
   methods:{
     /**
