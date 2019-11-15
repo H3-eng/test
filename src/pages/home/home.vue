@@ -135,6 +135,7 @@ export default {
     //将addTab挂载到window上，还有更好的方法？
     window.addTab=this.addTab
     window.closeTab=this.tabRemove
+    window.jumpTab=this.setActive
   },
   methods:{
     /**
