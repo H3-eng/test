@@ -29,6 +29,9 @@ const mutations = {
 
   //tab 增加
   [types.SET_ADDTAB](state, value) {
+    if(!value){
+      value=arguments[1]
+    }
     let index = value.pageUrl;
     if(index===''){
       alert('暂无页面')
