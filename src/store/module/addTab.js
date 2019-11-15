@@ -28,9 +28,10 @@ const mutations = {
 
 
   //tab 增加
-  [types.SET_ADDTAB](state, value) {
+  [types.SET_ADDTAB](state, value,addTap) {
+    //jsp addtap页面会有null参数
     if(!value){
-      value=arguments[1]
+      value=addTap
     }
     let index = value.pageUrl;
     if(index===''){
