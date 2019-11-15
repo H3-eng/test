@@ -28,11 +28,7 @@ const mutations = {
 
 
   //tab 增加
-  [types.SET_ADDTAB](state, value,addTap) {
-    //jsp addtap页面会有null参数
-    if(!value){
-      value=addTap
-    }
+  [types.SET_ADDTAB](state, value) {
     let index = value.pageUrl;
     if(index===''){
       alert('暂无页面')
