@@ -28,7 +28,7 @@
 
 <script>
 import sha1 from "sha1"
-import api from '@/api'
+import login from '@/api/login'
 import {
   SgButton,SgInput,SgForm,SgFormItem,SgCheckbox
 } from 'southgisui'
@@ -76,7 +76,7 @@ export default {
             username:this.formValidate.username,
             password:sha1(this.formValidate.password).toUpperCase()
           }
-          api.login({params:params})
+          login.login({params:params})
             .then(res=>{
               console.log(res);
               sessionStorage.setItem('loginTicket',JSON.stringify(res))

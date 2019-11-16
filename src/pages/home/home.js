@@ -44,7 +44,10 @@ function parseQueryString(url){
   if (!search) {
     return {}
   }
-  return JSON.parse('{"' + decodeURIComponent(search).replace(/"/g, '').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
+  console.log(JSON.parse('{"' + decodeURIComponent(search).replace(/"/g, '')
+    .replace(/&/g, '","').replace(/=/g, '":"') + '"}').scode);
+  return JSON.parse('{"' + decodeURIComponent(search).replace(/"/g, '')
+    .replace(/&/g, '","').replace(/=/g, '":"') + '"}')
 }
 /**
 * @Description:判断是否登陆，若未登陆，跳转登录页，登陆完将系统信息存入vuex中

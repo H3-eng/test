@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import api from '@/api'
+import home from '@/api/home'
 export default {
   name: "login",
   data(){
@@ -12,7 +12,7 @@ export default {
     }
   },
   mounted(){
-    api.getLog()
+    home.getLog()
       .then(res=>{
         this.logText=res[0].logText
       })

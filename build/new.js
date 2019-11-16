@@ -24,7 +24,7 @@ const page = path.resolve(__dirname,'../src/pages',name)
 if(process.argv[2]==='component'){
   const Files = [
     {
-      filename: 'index.js',
+      filename: 'login.js',
       content: `import ${name} from './${name}.vue';
 
 export default ${name};
