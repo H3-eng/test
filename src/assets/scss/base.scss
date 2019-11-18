@@ -97,7 +97,7 @@ html,body{
     float: left;
     // color: #bfc5d4;
     color: $color-gray;
-    text-decoration: none;
+    text-decoration: none !important;
     height: $button-height-md;
     padding-left: 0;
     padding-right: 0;

@@ -5,7 +5,7 @@ const rename = require('gulp-rename');
 const autoprefixer = require('gulp-autoprefixer');
 const minifycss = require('gulp-minify-css')
 
-gulp.task('common', function () {
+gulp.task('common', function (done) {
   gulp.src('../src/assets/scss/base.scss')
     .pipe(sass())
     .pipe(autoprefixer({
@@ -15,5 +15,6 @@ gulp.task('common', function () {
     .pipe(rename('common.css'))
     // .pipe(minifycss())
     .pipe(gulp.dest('../common'));
+  done()
 })
 gulp.task('default', gulp.series('common'));
