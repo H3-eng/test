@@ -91,28 +91,32 @@ html,body{
   }
 }
 
-//按钮图标+按钮
-.icon-button {
-  float: left;
-  // color: #bfc5d4;
-  color: $color-gray;
-  text-decoration: none;
-  height: $button-height-md;
-  padding-left: 0;
-  padding-right: 0;
-  margin-right: $button-spacing-md;
-  border: none;
-  user-select: none;
-  // 图标颜色修改
-  .iconfont {
-    color: #bfc5d4;
-    font-size: $font-size-md;
-    margin-right: $icon-spacing-sm;
-  }
-  &:hover {
-    color: #3b86e0;
+//按钮图标+按钮,sg-header布局下的文本按钮
+.sg-header {
+  .icon-button {
+    float: left;
+    // color: #bfc5d4;
+    color: $color-gray;
+    text-decoration: none;
+    height: $button-height-md;
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: $button-spacing-md;
+    border: none;
+    user-select: none;
+    // 图标颜色修改
     .iconfont {
+      color: #bfc5d4;
+      font-size: $font-size-md;
+      margin-right: $icon-spacing-sm;
+    }
+
+    &:hover {
       color: #3b86e0;
+
+      .iconfont {
+        color: #3b86e0;
+      }
     }
   }
 }
