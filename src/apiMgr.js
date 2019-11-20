@@ -2,32 +2,35 @@ import axios from 'axios'
 // axios 配置
 axios.defaults.timeout = 10000000;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-const ticket=JSON.parse(localStorage.getItem('loginTicket'))
 //供开发环境使用
 if(!process.env.NODE_ENV==="production") {
-  if (ticket && ticket['access_token']) {
-    axios.defaults.headers['X-AToken'] = ticket['access_token']
-  } else {
+  let ticket=localStorage.getItem('loginTicket')
+  if(!ticket){
     //模块开发需先通过网关登陆
-    const admin = prompt("账户名", "admin");
-    if (admin != null && admin != "") {
-      const password = prompt("密码", "Admin123");
-      if (password != null && password != "") {
-        axios.get('/cas/oauth2.0/token', {
-          baseURL: '',
-          params: {
-            grant_type: 'password',
-            client_id: 'sfpasys',
-            username: admin,
-            password: sha1(password).toUpperCase()
+    const admin=prompt("账户名","admin");
+    if (admin!=null && admin!=""){
+      const password=prompt("密码","Admin123");
+      if (password!=null && password!=""){
+        axios.get('/cas/oauth2.0/token',{
+          baseURL:'',
+          params:{
+            grant_type:'password',
+            client_id:'sfpasys',
+            username:admin,
+            password:sha1(password).toUpperCase()
           }
+        }).then(res=>{
+          localStorage.setItem('loginTicket',JSON.stringify(res.data))
+          window.location.reload()
         })
-          .then(res => {
-            localStorage.setItem('loginTicket', JSON.stringify(res.data))
-            window.location.reload()
+          .catch(err=>{
+            console.log(err.response);
           })
       }
     }
+  }else{
+    ticket=JSON.parse(ticket)
+    axios.defaults.headers['X-AToken']=ticket['access_token']
   }
 }
 /**
