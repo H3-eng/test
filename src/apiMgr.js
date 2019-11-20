@@ -1,7 +1,7 @@
 // axios 配置
 axios.defaults.timeout = 10000000;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-let ticket=JSON.parse(localStorage.getItem('loginTicket'))
+let ticket=JSON.parse(sessionStorage.getItem('loginTicket'))
 axios.defaults.headers['X-AToken']=ticket['access_token']
 //     axios.defaults.headers['X-AToken']=ticket['access_token']
 //供开发环境使用

@@ -79,8 +79,8 @@ export default {
           login.login({params:params})
             .then(res=>{
               console.log(res);
-              sessionStorage.setItem('loginTicket',JSON.stringify(res))
-              // window.location.href=process.env.NODE_ENV==='production'?'/mainProject/home.html?scode=os':'/home.html?scode=os'
+              localStorage.setItem('loginTicket',JSON.stringify(res.data))
+              window.location.href=process.env.NODE_ENV==='production'?'/mainProject/home.html?scode=os':'/home.html?scode=os'
             })
             .catch(error=>{
               this.$msg.error(error.response.data.code.toString())
