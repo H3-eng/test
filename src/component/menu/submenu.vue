@@ -3,7 +3,7 @@
     <sg-submenu :name="item.moduleId" v-if="item.children&&item.children.length>0"
                 :placement="placement" :transfer="transfer">
         <template slot="title">
-            <img :src="item.imageUrl" :class="imgClass">
+            <img :src="item.imageUrl" :class="imgClass" v-if="item.imageUrl">
             <span slot="subTitle">{{ item.name }}</span>
         </template>
         <div v-for="items in item.children" :key="items.moduleId">

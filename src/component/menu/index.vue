@@ -31,6 +31,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+    .sg-menu{
+        text-align: left;
+    }
 </style>
