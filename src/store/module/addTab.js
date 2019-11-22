@@ -2,7 +2,11 @@ import * as types from '../type'
 import Vue from 'vue'
 const state = {
   active: "", //当前选中菜单
-  tabList:[]
+  tabList:[{
+    pageUrl: `/taskmanagement-web/dagDesinger.html`,
+    name:'方案编辑',
+    moduleId:785926256595959599949595
+  }]
 }
 
 const getters = {
