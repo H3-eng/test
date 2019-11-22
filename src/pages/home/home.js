@@ -38,23 +38,12 @@ import 'southgis-scrollbar/scrollbar.css'
 // 引入系统样式表
 // 设置为 false 以阻止 vue 在启动时生成生产提示。
 Vue.config.productionTip = false
-function parseQueryString(url){
-  url = url == null ? window.location.href : url
-  var search = url.substring(url.lastIndexOf('?') + 1)
-  if (!search) {
-    return {}
-  }
-  console.log(JSON.parse('{"' + decodeURIComponent(search).replace(/"/g, '')
-    .replace(/&/g, '","').replace(/=/g, '":"') + '"}').scode);
-  return JSON.parse('{"' + decodeURIComponent(search).replace(/"/g, '')
-    .replace(/&/g, '","').replace(/=/g, '":"') + '"}')
-}
 /**
 * @Description:判断是否登陆，若未登陆，跳转登录页，登陆完将系统信息存入vuex中
 * @author huangjianhui
 * @date 2019/10/25
 */
-isLogin(parseQueryString())
+isLogin(fpa.parseUrl())
   .then(res=>{
     store.commit('saveMpData',res.data)
     new Vue({
