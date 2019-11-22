@@ -3,6 +3,9 @@ module.exports = {
     env: {
         node: true
     },
+    globals: {
+        axios:true
+    },
     extends: ["plugin:vue/essential", "eslint:recommended"],
     rules: {
         "no-console": "off",  //禁止使用console

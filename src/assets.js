@@ -17,10 +17,11 @@ import axios from 'axios'
 export const isLogin=function (scode) {
   //去sessionStorage拿loginTicket尝试登陆，若失败则跳转登录页
   const ticket=JSON.parse(sessionStorage.getItem('loginTicket'))
-  // eslint-disable-next-line no-debugger
-  if(ticket&&ticket['access_token']){
-    axios.defaults.headers['X-AToken']=ticket['access_token']
+  //如果ticket不存在，直接跳转登陆页
+  if(!ticket){
+    window.location.href=process.env.NODE_ENV==='production'?'/mainProject/login.html':'/login.html'
   }
+  axios.defaults.headers['X-AToken']=ticket['access_token']
   return new Promise((resolve,reject)=>{
     axios.get('/mainWeb/mpdata',{
       params:scode?scode:null

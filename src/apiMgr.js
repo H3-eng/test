@@ -1,9 +1,11 @@
 // axios 配置
 axios.defaults.timeout = 10000000;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+//登陆token
 let ticket = JSON.parse(sessionStorage.getItem('loginTicket'))
-if (!ticket && window.location.pathname != '/mainProject/login.html'&&
-  window.location.pathname != '/mainProject/home.html') {
+//如果ticket不存在并且不是登录页
+if (!ticket&&window.location.pathname!=='/mainProject/login.html'&&
+  window.location.pathname!=='/mainProject/home.html') {
   //模块开发需先通过网关登陆
   const admin = prompt("账户名", "admin");
   if (admin != null && admin != "") {
@@ -18,7 +20,7 @@ if (!ticket && window.location.pathname != '/mainProject/login.html'&&
           password: sha1(password).toUpperCase()
         }
       }).then(res => {
-        localStorage.setItem('loginTicket', JSON.stringify(res.data))
+        sessionStorage.setItem('loginTicket', JSON.stringify(res.data))
         window.location.reload()
       })
         .catch(err => {
@@ -28,6 +30,7 @@ if (!ticket && window.location.pathname != '/mainProject/login.html'&&
   }
 }
 axios.defaults.headers['X-AToken'] = ticket['access_token']
+console.log(axios.defaults);
 /**
  * 请求之前可以做什么
  */
