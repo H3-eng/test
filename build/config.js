@@ -19,14 +19,10 @@ module.exports={
       //需代理的应用
       context:['/logUpdate'],
       //代理目标主机
-      target:'http://192.168.10.9:8090',
-      //代理域名
-      changeOrigin: true,
-      // 利用node.js重写domain,解决tomcat接口重定向（302）导致接口跨域问题
-      hostRewrite:'localhost:8081'
+      target:'http://192.168.10.9:8090'
     }],
     //host
-    host:'localhost',
+    host:'0.0.0.0',
     //端口
     port:8081,
     //开发路径别名
