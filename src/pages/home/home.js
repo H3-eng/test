@@ -43,12 +43,6 @@ Vue.config.productionTip = false
 * @author huangjianhui
 * @date 2019/10/25
 */
-console.time('执行')
-for (let i = 0; i < 1000000; i++) {
-  const div=document.createElement('div')
-  document.querySelector('body').appendChild(div)
-}
-console.timeEnd('执行')
 isLogin(fpa.parseUrl())
   .then(res=>{
     store.commit('saveMpData',res.data)
