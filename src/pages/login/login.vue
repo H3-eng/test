@@ -92,7 +92,9 @@ export default {
             .then(res => {
               console.log(res);
               sessionStorage.setItem('loginTicket', JSON.stringify(res.data))
-              window.location.href = process.env.NODE_ENV === 'production' ? '/mainProject/home.html?scode=os' : '/home.html?scode=os'
+              setTimeout(()=>{
+                window.location.href = process.env.NODE_ENV === 'production' ? '/mainProject/home.html?scode=os' : '/home.html?scode=os'
+              },500)
             })
             .catch(error => {
               this.$msg.error(error.response.data.code.toString())
