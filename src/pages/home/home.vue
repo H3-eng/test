@@ -5,7 +5,7 @@
         <sg-header class="home-header">
             <sg-row>
                 <div class="logo">
-                    <img src="http://192.168.10.9:3002/logo.png" alt="">
+                    <img src="/bootstrap/logo.png" alt="">
                     <h1>{{mpdata.sysTitle}}</h1>
                 </div>
                 <sg-scroll style="flex:1;">

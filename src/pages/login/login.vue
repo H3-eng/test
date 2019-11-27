@@ -90,7 +90,6 @@ export default {
           }
           login.login({params: params})
             .then(res => {
-              console.log(res);
               sessionStorage.setItem('loginTicket', JSON.stringify(res.data))
               setTimeout(()=>{
                 window.location.href = process.env.NODE_ENV === 'production' ? '/mainProject/home.html?scode=os' : '/home.html?scode=os'
