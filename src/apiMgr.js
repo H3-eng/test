@@ -2,7 +2,7 @@
 axios.defaults.timeout = 10000000;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 //登陆token
-let ticket = localStorage.getItem('loginTicket')
+let ticket = sessionStorage.getItem('loginTicket')
 //如果ticket不存在并且不是登录页
 if (ticket==='undefind'&&window.location.pathname!=='/mainProject/login.html'&&
   window.location.pathname!=='/mainProject/home.html') {
@@ -20,7 +20,7 @@ if (ticket==='undefind'&&window.location.pathname!=='/mainProject/login.html'&&
           password: sha1(password).toUpperCase()
         }
       }).then(res => {
-        localStorage.setItem('loginTicket', JSON.stringify(res.data))
+        sessionStorage.setItem('loginTicket', JSON.stringify(res.data))
         window.location.reload()
       })
         .catch(err => {
