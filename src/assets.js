@@ -3,7 +3,6 @@
  *@date: 2019/10/17
  *@description: 应用公用函数
  */
-import axios from 'axios'
 /**
 * @Description:判断应用有无登陆
  * 若主应用已经登陆，在sessionStorage拿cookie值去请求接口登陆
