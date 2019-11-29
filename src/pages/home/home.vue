@@ -206,14 +206,15 @@ export default {
         content:'确定退出系统?',
         closable: true,
         onOk: () => {
+          //循环调用注销接口，不管成功与否，都退出登陆
           const appUrl=JSON.parse(this.mpdata.appUrl)
           if(appUrl.length>0){
             for (let i = 0; i < appUrl.length; i++) {
               axios.get(appUrl[i])
             }
           }
-          // window.location.href=process.env.NODE_ENV==='production'?
-          //   '/mainProject/login.html':'/login.html'
+          window.location.href=process.env.NODE_ENV==='production'?
+            '/mainProject/login.html':'/login.html'
         }
       })
 
