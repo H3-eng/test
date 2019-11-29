@@ -26,11 +26,12 @@ export const isLogin=function (scode) {
       params:scode?scode:null
     })
       .then(res=>{
-        console.log(res);
+        if(res.noRight){
+          alert(res.noRight)
+        }
         resolve(res)
       })
       .catch(error=>{
-        console.log(error.response);
         if(error.response.data.code===-201||error.response.data.code===-110){
           console.log(process.env.NODE_ENV);
           window.location.href=process.env.NODE_ENV==='production'?'/mainProject/login.html':'/login.html'
