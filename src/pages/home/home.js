@@ -45,7 +45,7 @@ Vue.config.productionTip = false
 */
 isLogin(fpa.parseUrl())
   .then(res=>{
-    store.commit('saveMpData',res.data)
+    store.commit('saveMpData',res)
     new Vue({
       store,
       render: h => h(App)
