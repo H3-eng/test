@@ -96,6 +96,10 @@ export default {
         },{
           name:'深圳成果管理',
           code:'rmg'
+        },
+        {
+          name:'hxm测试',
+          code:'wl'
         }
       ],
       //是否展示系统切换
