@@ -124,14 +124,14 @@ export default {
   },
   mounted(){
     //进页面,默认选中第一个模块展示,如果第一个没有页面，就继续往下找
-    // const defaultTab=param=>{
-    //   if(param.pageUrl===''&&param.children[0]){
-    //     defaultTab(param.children[0])
-    //   }else{
-    //     this.addTab(param)
-    //   }
-    // }
-    // defaultTab(JSON.parse(this.mpdata.mTree).children[0])
+    const defaultTab=param=>{
+      if(param.pageUrl===''&&param.children[0]){
+        defaultTab(param.children[0])
+      }else{
+        this.addTab(param)
+      }
+    }
+    defaultTab(JSON.parse(this.mpdata.mTree).children[0])
     //将addTab挂载到window上，还有更好的方法？
     window.addTab=this.addTab
     //为了兼容jsp

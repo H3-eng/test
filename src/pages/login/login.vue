@@ -7,7 +7,18 @@
             </div>
             <div class="wrap">
                 <p class="title">正在登录到南方数码空间基础信息平台</p>
-                <p class="login-tip">登录</p>
+                <div class="flex flex-main-between">
+                    <p class="login-tip">登录</p>
+                    <sg-dropdown :visible="showDropdown">
+                        {{sysname|filterSysName(sysname)}}
+                        <sg-icon type="icon-sort-desc"></sg-icon>
+                        <div slot="menu" class="sys-list">
+                            <sg-dropdown-item v-for="item in sysList" @click.native="selectSys(item.code)"  :key="item.code">
+                                {{item.name}}
+                            </sg-dropdown-item>
+                        </div>
+                    </sg-dropdown>
+                </div>
                 <sg-form ref="formValidate" :model="formValidate" :rules="ruleValidate">
                     <sg-form-item prop="username">
                         <sg-input v-model="formValidate.username" placeholder="账号是：admin"></sg-input>
@@ -44,6 +55,7 @@ import login from '@/api/login'
 import {
   SgButton, SgInput, SgForm, SgFormItem, SgCheckbox
 } from 'southgisui'
+import {mapMutations} from 'vuex'
 
 export default {
   data() {
@@ -67,11 +79,38 @@ export default {
           {whitespace: true, message: '不可包含空白字符', trigger: 'change'},
           {pattern: /^[A-Za-z0-9\u4e00-\u9fa5]*$/, type: 'string', message: '仅可输入字母、汉字以及数字', trigger: 'change'}
         ]
-      }
+      },
+      //子系统
+      sysname:'os',
+      //子系统列表
+      sysList:[
+        {
+          name:'运维中心',
+          code:'os'
+        },{
+          name:'应用中心',
+          code:'app'
+        },{
+          name:'数据中心',
+          code:'dmc'
+        },{
+          name:'深圳成果管理',
+          code:'rmg'
+        }
+      ],
+      //是否展示系统切换
+      showDropdown:false
     }
   },
   components: {SgButton, SgInput, SgForm, SgFormItem, SgCheckbox},
   methods: {
+    ...mapMutations({
+      saveMpData:'saveMpData'
+    }),
+    selectSys(name){
+      this.sysname=name
+      this.showDropdown=false
+    },
     /**
        * @Description:用户登陆系统，登陆规则详见***
        * @author huangjianhui
@@ -91,10 +130,23 @@ export default {
           login.login({params: params})
             .then(res => {
               localStorage.setItem('loginTicket', JSON.stringify(res))
-              window.location.href = process.env.NODE_ENV === 'production' ? '/mainProject/home.html?scode=os' : '/home.html?scode=os'
+              //登陆成功后，请求mpdata，如果用户没有权限，则不跳转地址
+              axios.get('/mainWeb/mpdata',{
+                params:{
+                  'scode':this.sysname?this.sysname:null
+                }
+              })
+                .then(res=>{
+                  if(res.noRight){
+                    this.$msg.error(res.noRight)
+                    return false
+                  }
+                  this.saveMpData(res)
+                  window.location.href = process.env.NODE_ENV === 'production' ? `/mainProject/home.html?scode=${this.sysname}` : `/home.html?scode=${this.sysname}`
+                })
             })
             .catch(error => {
-              this.$msg.error(error.response.data.code.toString())
+              this.$msg.error(error.response.data.message)
             })
         }
       })
@@ -111,6 +163,21 @@ export default {
   },
   beforeDestroy() {
     document.removeEventListener('keydown', this.EnterLogin);
+  },
+  filters:{
+    filterSysName(name){
+      switch (name) {
+      case 'os':
+        return '运维中心'
+      case 'app':
+        return '应用中心'
+      case 'dmc':
+        return '数据中心'
+      case 'rmg':
+        return '深圳成果管理'
+      default:'os'
+      }
+    }
   }
 }
 </script>

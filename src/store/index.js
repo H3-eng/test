@@ -10,7 +10,6 @@ export default new Vuex.Store({
   },
   mutations: {
     saveMpData(state, res) {
-      console.log(res);
       state.mpdata = res
     }
   },
