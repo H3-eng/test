@@ -16,7 +16,7 @@ import axios from 'axios'
 */
 export const isLogin=function (scode) {
   //去sessionStorage拿loginTicket尝试登陆，若失败则跳转登录页
-  const ticket=JSON.parse(sessionStorage.getItem('loginTicket'))
+  const ticket=JSON.parse(localStorage.getItem('loginTicket'))
   //如果ticket不存在，直接跳转登陆页
   if(!ticket){
     window.location.href=process.env.NODE_ENV==='production'?'/mainProject/login.html':'/login.html'

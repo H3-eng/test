@@ -18,6 +18,7 @@ if (!process.argv[2]) {
 
 const path = require('path');
 const fileSave = require('file-save');
+console.log(process.argv);
 const name =process.argv[3]
 const component = path.resolve(__dirname, '../src/component', name);
 const page = path.resolve(__dirname,'../src/pages',name)

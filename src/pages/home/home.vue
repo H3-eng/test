@@ -206,13 +206,14 @@ export default {
         content:'确定退出系统?',
         closable: true,
         onOk: () => {
-          //新的方式请求什么？
-          // axios.get(this.mpdata.logoutUrl)
-          //   .then(()=>{
-          //
-          //   })
-          window.location.href=process.env.NODE_ENV==='production'?
-            '/mainProject/login.html':'/login.html'
+          const appUrl=JSON.parse(this.mpdata.appUrl)
+          if(appUrl.length>0){
+            for (let i = 0; i < appUrl.length; i++) {
+              axios.get(appUrl[i])
+            }
+          }
+          // window.location.href=process.env.NODE_ENV==='production'?
+          //   '/mainProject/login.html':'/login.html'
         }
       })
 

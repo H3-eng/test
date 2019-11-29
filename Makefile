@@ -1,6 +1,6 @@
 .PHONY: dist test
 default: help
-
+page=page
 install:
 	npm install
 
@@ -8,7 +8,7 @@ dev:
 	npm run dev
 
 new:
-	node build/new.js $(filter-out $@,$(MAKECMDGOALS))
+	node build/new.js ${page}
 
 dist: install
 	npm run dist
