@@ -81,25 +81,25 @@ export default {
         ]
       },
       //子系统
-      sysname:'os',
+      sysname:'rmg',
       //子系统列表
       sysList:[
-        {
-          name:'运维中心',
-          code:'os'
-        },
+        // {
+        //   name:'运维中心',
+        //   code:'os'
+        // },
         // {
         //   name:'应用中心',
         //   code:'app'
         // },
-        {
-          name:'数据中心',
-          code:'dmc'
-        }
         // {
-        //   name:'深圳成果管理',
-        //   code:'rmg'
-        // },
+        //   name:'数据中心',
+        //   code:'dmc'
+        // }
+        {
+          name:'数据展示管理系统',
+          code:'rmg'
+        }
         // {
         //   name:'hxm测试',
         //   code:'wl'
@@ -183,8 +183,8 @@ export default {
       case 'dmc':
         return '数据中心'
       case 'rmg':
-        return '深圳成果管理'
-      default:'os'
+        return '数据展示管理系统'
+      default:'rmg'
       }
     }
   }
