@@ -87,20 +87,23 @@ export default {
         {
           name:'运维中心',
           code:'os'
-        },{
-          name:'应用中心',
-          code:'app'
-        },{
+        },
+        // {
+        //   name:'应用中心',
+        //   code:'app'
+        // },
+        {
           name:'数据中心',
           code:'dmc'
-        },{
-          name:'深圳成果管理',
-          code:'rmg'
-        },
-        {
-          name:'hxm测试',
-          code:'wl'
         }
+        // {
+        //   name:'深圳成果管理',
+        //   code:'rmg'
+        // },
+        // {
+        //   name:'hxm测试',
+        //   code:'wl'
+        // }
       ],
       //是否展示系统切换
       showDropdown:false
@@ -152,7 +155,7 @@ export default {
                 })
             })
             .catch(error => {
-              this.$msg.error(error.response.data.message)
+              this.$msg.error(error.response.data.code.toString())
             })
         }
       })

@@ -37,14 +37,14 @@
                                     <i class="icon yunwei"></i>
                                     运维管理中心
                                 </sg-dropdown-item>
-                                <sg-dropdown-item @click.native="changeSys('app')">
-                                    <i class="icon yingyong"></i>
-                                    应用服务中心
-                                </sg-dropdown-item>
-                                <sg-dropdown-item @click.native="changeSys('rmg')">
-                                    <i class="icon shenzhen"></i>
-                                    深圳成果管理
-                                </sg-dropdown-item>
+<!--                                <sg-dropdown-item @click.native="changeSys('app')">-->
+<!--                                    <i class="icon yingyong"></i>-->
+<!--                                    应用服务中心-->
+<!--                                </sg-dropdown-item>-->
+<!--                                <sg-dropdown-item @click.native="changeSys('rmg')">-->
+<!--                                    <i class="icon shenzhen"></i>-->
+<!--                                    深圳成果管理-->
+<!--                                </sg-dropdown-item>-->
                             </div>
                         </sg-dropdown>
                     </div>
