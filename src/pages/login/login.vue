@@ -143,6 +143,8 @@ export default {
               localStorage.setItem('loginTicket', JSON.stringify(res))
               //登陆成功后，请求mpdata，如果用户没有权限，则不跳转地址
               const ticket=res
+              console.log(res);
+              console.log(ticket);
               axios.defaults.headers['X-AToken']=ticket['access_token']
               //单纯为了验证有无权限
               axios.get('/mainweb/mpdata',{
