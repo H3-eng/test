@@ -1,4 +1,4 @@
 export default {
-  mpdata:(data)=>axios.get('/mainWeb/mpdata',data),
-  getLog:()=>axios.get('/logUpdate/getLog')
+  //获取用户信息
+  mpdata:(data)=>axios.get('/mainweb/mpdata',data)
 }

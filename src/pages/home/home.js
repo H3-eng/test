@@ -31,7 +31,6 @@ Vue.use(SgDropdown)
 Vue.use(SgDropdownItem)
 Vue.use(SgScroll)
 Vue.use(SgAside)
-import {isLogin} from "@/assets";
 import SgScrollbar from 'southgis-scrollbar'
 Vue.component('sg-scrollbar',SgScrollbar)
 import 'southgis-scrollbar/scrollbar.css'
@@ -43,7 +42,10 @@ Vue.config.productionTip = false
 * @author huangjianhui
 * @date 2019/10/25
 */
-isLogin(fpa.parseUrl())
+import home from '@/api/home'
+
+console.log(fpa);
+home.mpdata(fpa.parseUrl())
   .then(res=>{
     store.commit('saveMpData',res)
     new Vue({

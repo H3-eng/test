@@ -86,6 +86,7 @@
     "lodash.truncate": "^4.4.2",
     "popper.js": "^1.16.0",
     "v-click-outside-x": "^4.0.19",
-    "async-validator": "^3.2.0"
+    "async-validator": "^3.2.0",
+    "sgui-form": "1.0.0"
   }
 }

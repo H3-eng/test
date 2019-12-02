@@ -95,7 +95,6 @@
 <script>
 import IMenu from '_c/menu/index.vue'
 import {mapGetters,mapMutations} from 'vuex'
-// import axios from 'axios'
 export default {
   name: 'mainProject',
   components:{IMenu},

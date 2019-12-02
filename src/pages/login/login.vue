@@ -2,11 +2,13 @@
     <div class="login">
         <div class="layout">
             <div class="layout-logo">
-                <div class="logo"></div>
+                <div class="logo-temp">
+                    云南省三调数据库管理系统
+                </div>
                 <div class="earth"></div>
             </div>
             <div class="wrap">
-                <p class="title">正在登录到南方数码空间基础信息平台</p>
+                <p class="title">正在登录到云南省三调数据库管理系统</p>
                 <div class="flex flex-main-between">
                     <p class="login-tip">登录</p>
                     <sg-dropdown :visible="showDropdown">
@@ -44,7 +46,7 @@
                     </sg-form-item>
                 </sg-form>
             </div>
-            <p class="record">沪ICP备：12004267 沪公网安备：31010102004544号 沪公网安备：31010102004544</p>
+<!--            <p class="record">沪ICP备：12004267 沪公网安备：31010102004544号 沪公网安备：31010102004544</p>-->
         </div>
     </div>
 </template>
@@ -55,7 +57,6 @@ import login from '@/api/login'
 import {
   SgButton, SgInput, SgForm, SgFormItem, SgCheckbox
 } from 'southgisui'
-import {mapMutations} from 'vuex'
 
 export default {
   data() {
@@ -97,7 +98,7 @@ export default {
         //   code:'dmc'
         // }
         {
-          name:'数据展示管理系统',
+          name:'数据库管理系统',
           code:'rmg'
         }
         // {
@@ -111,9 +112,12 @@ export default {
   },
   components: {SgButton, SgInput, SgForm, SgFormItem, SgCheckbox},
   methods: {
-    ...mapMutations({
-      saveMpData:'saveMpData'
-    }),
+    listSubSystem(){
+      login.listSubSystem()
+        .then(res=>{
+          console.log(res);
+        })
+    },
     selectSys(name){
       this.sysname=name
       this.showDropdown=false
@@ -138,9 +142,10 @@ export default {
             .then(res => {
               localStorage.setItem('loginTicket', JSON.stringify(res))
               //登陆成功后，请求mpdata，如果用户没有权限，则不跳转地址
-              const ticket=JSON.parse(localStorage.getItem('loginTicket'))
+              const ticket=JSON.parse(res)
               axios.defaults.headers['X-AToken']=ticket['access_token']
-              axios.get('/mainWeb/mpdata',{
+              //单纯为了验证有无权限
+              axios.get('/mainweb/mpdata',{
                 params:{
                   'scode':this.sysname?this.sysname:null
                 }
@@ -150,7 +155,6 @@ export default {
                     this.$msg.error(res.noRight)
                     return false
                   }
-                  this.saveMpData(res)
                   window.location.href = process.env.NODE_ENV === 'production' ? `/mainProject/home.html?scode=${this.sysname}` : `/home.html?scode=${this.sysname}`
                 })
             })
@@ -169,6 +173,7 @@ export default {
   mounted() {
     // Enter login
     document.addEventListener('keydown', this.EnterLogin);
+    this.listSubSystem()
   },
   beforeDestroy() {
     document.removeEventListener('keydown', this.EnterLogin);
@@ -183,7 +188,7 @@ export default {
       case 'dmc':
         return '数据中心'
       case 'rmg':
-        return '数据展示管理系统'
+        return '数据库管理系统'
       default:'rmg'
       }
     }
@@ -192,5 +197,11 @@ export default {
 </script>
 <style lang="scss" scoped>
     @import "login.scss";
+    .logo-temp{
+        font-size: 24px;
+        color: #fff;
+        margin-bottom: 36px;
+        text-align: center;
+    }
 </style>
 

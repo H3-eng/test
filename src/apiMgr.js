@@ -49,7 +49,10 @@ axios.interceptors.request.use((config) => {
 axios.interceptors.response.use((res) => {
   return Promise.resolve(res.data)
 }, (error) => {
-  Vue.$msg.error('这是一条错误的消息')
+  //如果返回-201，则需要重新登陆
+  if(error.response.data.code===-201){
+    window.location.href=process.env.NODE_ENV==='production'?'/mainProject/login.html':'/login.html'
+  }
   return Promise.reject(error)
 }
 )

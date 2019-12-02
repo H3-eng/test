@@ -5,14 +5,24 @@ import "./login.scss"
 import "southgisui/lib/sgui-theme/index.css";
 import store from '@/store'
 
-import {SgMsg,SgDropdown,SgIcon,SgDropdownItem} from 'southgisui'
+import {SgMsg,SgDropdown,SgIcon,
+  SgDropdownItem,SgInput,SgButton,
+  sgDatePicker
+} from 'southgisui'
 Vue.use(SgMsg)
 Vue.use(SgDropdown)
 Vue.use(SgIcon)
 Vue.use(SgDropdownItem)
+Vue.use(SgInput)
+Vue.use(SgButton)
+Vue.use(sgDatePicker)
+
+
 // 设置为 false 以阻止 vue 在启动时生成生产提示。
 Vue.config.productionTip = false
-
+import 'sgui-form/lib/sgui-form.css'
+import sf from 'sgui-form'
+Vue.use(sf)
 new Vue({
   render: h => h(App),
   store
