@@ -176,7 +176,7 @@ export default {
   mounted() {
     // Enter login
     document.addEventListener('keydown', this.EnterLogin);
-    this.listSubSystem()
+    // this.listSubSystem()
   },
   beforeDestroy() {
     document.removeEventListener('keydown', this.EnterLogin);
