@@ -141,24 +141,26 @@ export default {
           login.login({params: params})
             .then(res => {
               localStorage.setItem('loginTicket', JSON.stringify(res))
-              //登陆成功后，请求mpdata，如果用户没有权限，则不跳转地址
-              const ticket=res
-              console.log(res);
-              console.log(ticket);
-              axios.defaults.headers['X-AToken']=ticket['access_token']
-              //单纯为了验证有无权限
-              axios.get('/mainweb/mpdata',{
-                params:{
-                  'scode':this.sysname?this.sysname:null
-                }
-              })
-                .then(res=>{
-                  if(res.noRight){
-                    this.$msg.error(res.noRight)
-                    return false
-                  }
-                  window.location.href = process.env.NODE_ENV === 'production' ? `/mainProject/home.html?scode=${this.sysname}` : `/home.html?scode=${this.sysname}`
-                })
+              window.location.href = process.env.NODE_ENV === 'production' ? `/mainProject/home.html?scode=${this.sysname}` : `/home.html?scode=${this.sysname}`
+
+              // //登陆成功后，请求mpdata，如果用户没有权限，则不跳转地址
+              // const ticket=res
+              // console.log(res);
+              // console.log(ticket);
+              // axios.defaults.headers['X-AToken']=ticket['access_token']
+              // //单纯为了验证有无权限
+              // axios.get('/mainweb/mpdata',{
+              //   params:{
+              //     'scode':this.sysname?this.sysname:null
+              //   }
+              // })
+              //   .then(res=>{
+              //     if(res.noRight){
+              //       this.$msg.error(res.noRight)
+              //       return false
+              //     }
+              //     window.location.href = process.env.NODE_ENV === 'production' ? `/mainProject/home.html?scode=${this.sysname}` : `/home.html?scode=${this.sysname}`
+              //   })
             })
             .catch(error => {
               console.log(error);
