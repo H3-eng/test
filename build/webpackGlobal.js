@@ -11,11 +11,11 @@ var webpackConfig =  {
   mode: 'production',
   devtool:"cheap-source-map",
   entry: {
-    app:'./src/assets.js'
+    app:'./src/loadBootstrap.js'
   },
   output: {
     path: config.build.assetsRoot,
-    filename: assetsPath('js/assets.js'),
+    filename: assetsPath('js/loadBootstrap.js'),
     publicPath:"./"
   },
   module:{
