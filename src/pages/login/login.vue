@@ -8,11 +8,11 @@
                 <div class="earth"></div>
             </div>
             <div class="wrap">
-                <p class="title">正在登录到云南省三调数据库管理系统</p>
+                <p class="title">正在登录到***</p>
                 <div class="flex flex-main-between">
                     <p class="login-tip">登录</p>
                     <sg-dropdown :visible="showDropdown">
-                        {{sysname|filterSysName(sysname)}}
+                        {{sysname}}
                         <sg-icon type="icon-sort-desc"></sg-icon>
                         <div slot="menu" class="sys-list">
                             <sg-dropdown-item v-for="item in sysList" @click.native="selectSys(item.code)"  :key="item.code">
@@ -82,38 +82,17 @@ export default {
         ]
       },
       //子系统
-      sysname:'rmg',
+      sysname:'',
       //子系统列表
-      sysList:[
-        // {
-        //   name:'运维中心',
-        //   code:'os'
-        // },
-        // {
-        //   name:'应用中心',
-        //   code:'app'
-        // },
-        // {
-        //   name:'数据中心',
-        //   code:'dmc'
-        // }
-        {
-          name:'数据库管理系统',
-          code:'rmg'
-        }
-        // {
-        //   name:'hxm测试',
-        //   code:'wl'
-        // }
-      ],
+      sysList:[],
       //是否展示系统切换
       showDropdown:false
     }
   },
   components: {SgButton, SgInput, SgForm, SgFormItem, SgCheckbox},
   methods: {
-    listSubSystem(){
-      login.listSubSystem()
+    listAllSubSystems(){
+      login.listAllSubSystems()
         .then(res=>{
           console.log(res);
         })
@@ -142,25 +121,6 @@ export default {
             .then(res => {
               localStorage.setItem('loginTicket', JSON.stringify(res))
               window.location.href = process.env.NODE_ENV === 'production' ? `/mainProject/home.html?scode=${this.sysname}` : `/home.html?scode=${this.sysname}`
-
-              // //登陆成功后，请求mpdata，如果用户没有权限，则不跳转地址
-              // const ticket=res
-              // console.log(res);
-              // console.log(ticket);
-              // axios.defaults.headers['X-AToken']=ticket['access_token']
-              // //单纯为了验证有无权限
-              // axios.get('/mainweb/mpdata',{
-              //   params:{
-              //     'scode':this.sysname?this.sysname:null
-              //   }
-              // })
-              //   .then(res=>{
-              //     if(res.noRight){
-              //       this.$msg.error(res.noRight)
-              //       return false
-              //     }
-              //     window.location.href = process.env.NODE_ENV === 'production' ? `/mainProject/home.html?scode=${this.sysname}` : `/home.html?scode=${this.sysname}`
-              //   })
             })
             .catch(error => {
               console.log(error);
@@ -178,25 +138,10 @@ export default {
   mounted() {
     // Enter login
     document.addEventListener('keydown', this.EnterLogin);
-    // this.listSubSystem()
+    this.listAllSubSystems()
   },
   beforeDestroy() {
     document.removeEventListener('keydown', this.EnterLogin);
-  },
-  filters:{
-    filterSysName(name){
-      switch (name) {
-      case 'os':
-        return '运维中心'
-      case 'app':
-        return '应用中心'
-      case 'dmc':
-        return '数据中心'
-      case 'rmg':
-        return '数据库管理系统'
-      default:'rmg'
-      }
-    }
   }
 }
 </script>

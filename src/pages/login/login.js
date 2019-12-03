@@ -6,8 +6,7 @@ import "southgisui/lib/sgui-theme/index.css";
 import store from '@/store'
 
 import {SgMsg,SgDropdown,SgIcon,
-  SgDropdownItem,SgInput,SgButton,
-  sgDatePicker
+  SgDropdownItem,SgInput,SgButton
 } from 'southgisui'
 Vue.use(SgMsg)
 Vue.use(SgDropdown)
@@ -15,7 +14,6 @@ Vue.use(SgIcon)
 Vue.use(SgDropdownItem)
 Vue.use(SgInput)
 Vue.use(SgButton)
-Vue.use(sgDatePicker)
 
 
 // 设置为 false 以阻止 vue 在启动时生成生产提示。
