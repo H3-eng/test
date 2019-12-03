@@ -44,6 +44,7 @@ Vue.config.productionTip = false
 */
 import home from '@/api/home'
 
+
 home.mpdata({params:fpa.parseUrl()})
   .then(res=>{
     store.commit('saveMpData',res)
