@@ -27,14 +27,6 @@
       <img :src="item.imageUrl" class="icon">
       <span>{{item.name}}</span>
     </sg-menu-item>
-      <sg-menu-item :name="item.moduleId" v-else @click.native="addTab(item)">
-          <img :src="item.imageUrl" class="icon">
-          <span>{{item.name}}</span>
-      </sg-menu-item>
-      <sg-menu-item :name="item.moduleId" v-else @click.native="addTab(item)">
-          <img :src="item.imageUrl" class="icon">
-          <span>{{item.name}}</span>
-      </sg-menu-item>
   </div>
 </template>
 

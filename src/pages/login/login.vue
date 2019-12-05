@@ -8,15 +8,15 @@
                 <div class="earth"></div>
             </div>
             <div class="wrap">
-                <p class="title">正在登录到***</p>
+                <p class="title">正在登录到{{sysname}}</p>
                 <div class="flex flex-main-between">
                     <p class="login-tip">登录</p>
                     <sg-dropdown :visible="showDropdown">
                         {{sysname}}
-                        <sg-icon type="icon-sort-desc"></sg-icon>
+                        <sg-icon type="icon-sort-desc"/>
                         <div slot="menu" class="sys-list">
-                            <sg-dropdown-item v-for="item in sysList" @click.native="selectSys(item.code)"  :key="item.code">
-                                {{item.name}}
+                            <sg-dropdown-item v-for="item in sysList" @click.native="selectSys(item.sysName)"  :key="item.sysCode">
+                                {{item.sysName}}
                             </sg-dropdown-item>
                         </div>
                     </sg-dropdown>
@@ -94,7 +94,9 @@ export default {
     listAllSubSystems(){
       login.listAllSubSystems()
         .then(res=>{
-          console.log(res);
+          this.sysList = res.data;
+          this.sysname = this.sysList[0].sysName;
+          // console.log(this.sysList);
         })
     },
     selectSys(name){
@@ -138,7 +140,8 @@ export default {
   mounted() {
     // Enter login
     document.addEventListener('keydown', this.EnterLogin);
-    this.listAllSubSystems()
+    this.listAllSubSystems();
+    //console.log('用户能用的子列表：'+this.sysList)
   },
   beforeDestroy() {
     document.removeEventListener('keydown', this.EnterLogin);
