@@ -94,9 +94,8 @@ export default {
     listAllSubSystems(){
       login.listAllSubSystems()
         .then(res=>{
-          this.sysList = res.data;
+          this.sysList = res;
           this.sysname = this.sysList[0].sysName;
-          // console.log(this.sysList);
         })
     },
     selectSys(name){
@@ -141,7 +140,7 @@ export default {
     // Enter login
     document.addEventListener('keydown', this.EnterLogin);
     this.listAllSubSystems();
-    //console.log('用户能用的子列表：'+this.sysList)
+    // console.log('用户能用的子列表：'+this.sysList)
   },
   beforeDestroy() {
     document.removeEventListener('keydown', this.EnterLogin);
