@@ -31,7 +31,7 @@
                     </sg-form-item>
                     <sg-form-item>
                         <div class="flex">
-                            <div class="flex-item">
+                            <div class="flex-item" @click="handleRemember('formValidate')">
                                 <sg-checkbox class="keep" v-model="keep">记住账号</sg-checkbox>
                             </div>
                             <div class="flex-item">
@@ -54,6 +54,7 @@
 <script>
 import sha1 from "sha1"
 import login from '@/api/login'
+import utils from '@/js/utils.js'
 import {
   SgButton, SgInput, SgForm, SgFormItem, SgCheckbox
 } from 'southgisui'
@@ -133,10 +134,38 @@ export default {
       if (e.keyCode === 13) {
         this.handleLogin('formValidate')
       }
+    },
+    handleRemember(name) {
+      this.$refs[name].validate((valid) => {
+        if (valid) {
+          console.log("true")
+          this.keep = !this.keep;
+          if (this.keep == true) {
+            localStorage.setItem('userName', utils.encrypt(this.formValidate.username, ''));
+            localStorage.setItem('passWord', utils.encrypt(this.formValidate.password, ''));
+            localStorage.setItem('state',1);
+          } else if (this.keep == false) {
+            localStorage.removeItem('userName');
+            localStorage.removeItem('passWord');
+            localStorage.removeItem('state');
+          }
+        } else {
+          this.keep == false;
+          console.log("error")
+        }
+      });
     }
   },
   mounted() {
     // Enter login
+    var userName = utils.decrypt(localStorage.getItem('userName'));
+    var passWord = utils.decrypt(localStorage.getItem('passWord'), '');
+    this.keep = localStorage.getItem('state');
+    this.formValidate.username = userName;
+    this.formValidate.password = passWord;
+    if (localStorage.getItem('state') == 1) {
+      this.keep = true;
+    }
     document.addEventListener('keydown', this.EnterLogin);
     this.listAllSubSystems()
   },
