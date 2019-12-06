@@ -57,14 +57,15 @@ import login from '@/api/login'
 import {
   SgButton, SgInput, SgForm, SgFormItem, SgCheckbox
 } from 'southgisui'
+import index from '@/crypto/index.js'
 
 export default {
   data() {
     return {
       //表单属性信息
       formValidate: {
-        username: 'admin',
-        password: 'Admin123'
+        username: '',
+        password: ''
       },
       //是否记住账号
       keep: false,
@@ -109,6 +110,15 @@ export default {
     handleLogin(name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
+          const self=this;
+          if(self.keep==true){
+            let name= index.encrypt(self.formValidate.username,'');
+            let password=index.encrypt(self.formValidate.password,'');
+            localStorage.setItem('sitename',name);
+            localStorage.setItem('setpwd',password);
+          }else{
+            localStorage.clear();
+          }
           //登陆与前端在同一台服务器上
           // const url = `/cas/login?service=http://localhost:8081/home.html?scode=os&client_name=iboa2&code=A0${this.formValidate.username}a0z9${sha1(this.formValidate.password).toUpperCase()}`
           const params = {
@@ -133,7 +143,17 @@ export default {
       if (e.keyCode === 13) {
         this.handleLogin('formValidate')
       }
+    },
+    getlocalStorage(){
+      this.formValidate.username=index.decrypt(localStorage.getItem('sitename'))
+      this.formValidate.password=index.decrypt(localStorage.getItem('setpwd'))
+      if(this.formValidate.username){
+        this.keep=true
+      }
     }
+  },
+  created() {
+    this.getlocalStorage();
   },
   mounted() {
     // Enter login
