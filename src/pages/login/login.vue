@@ -31,7 +31,7 @@
                     </sg-form-item>
                     <sg-form-item>
                         <div class="flex">
-                            <div class="flex-item">
+                            <div class="flex-item" @click="handleRemember('formValidate')">
                                 <sg-checkbox class="keep" v-model="keep">记住账号</sg-checkbox>
                             </div>
                             <div class="flex-item">
@@ -54,6 +54,7 @@
 <script>
 import sha1 from "sha1"
 import login from '@/api/login'
+import utils from '@/js/utils.js'
 import {
   SgButton, SgInput, SgForm, SgFormItem, SgCheckbox
 } from 'southgisui'
@@ -120,6 +121,11 @@ export default {
           }
           login.login({params: params})
             .then(res => {
+              //记住密码则存localStorage
+              if (this.keep == true) {
+                localStorage.setItem('userName', utils.encrypt(this.formValidate.username, ''));
+                localStorage.setItem('passWord', utils.encrypt(this.formValidate.password, ''));
+              }
               localStorage.setItem('loginTicket', JSON.stringify(res))
               window.location.href = process.env.NODE_ENV === 'production' ? `/mainProject/home.html?scode=${this.selectSystem.sysCode}` : `/home.html?scode=${this.selectSystem.sysCode}`
             })
@@ -134,9 +140,30 @@ export default {
       if (e.keyCode === 13) {
         this.handleLogin('formValidate')
       }
+    },
+    handleRemember(name) {
+      this.$refs[name].validate((valid) => {
+        if (valid) {
+          let rememberStates = this.keep;
+          this.keep = !rememberStates;
+        } else {
+          this.keep = false;
+          console.log("error")
+        }
+      });
+      console.log(this.keep);
     }
   },
   mounted() {
+    if (localStorage.getItem('userName')!=null&&localStorage.getItem('passWord')!=null) {
+      let userName = utils.decrypt(localStorage.getItem('userName'));
+      let passWord = utils.decrypt(localStorage.getItem('passWord'), '');
+      this.formValidate.username = userName;
+      this.formValidate.password = passWord;
+      this.keep = true;
+    } else {
+      this.keep = false;
+    }
     // Enter login
     document.addEventListener('keydown', this.EnterLogin);
     this.listAllSubSystems();
