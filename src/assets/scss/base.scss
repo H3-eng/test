@@ -93,10 +93,11 @@ html,body{
 }
 
 //按钮图标+按钮,sg-header布局下的文本按钮
-.sg-header {
+.sg-header.fpa-common-head {
+  padding:7px 0;
+  border-bottom: 1px solid #dfdfdf;
   .icon-button {
     float: left;
-    // color: #bfc5d4;
     color: $color-gray;
     text-decoration: none !important;
     height: $button-height-md;
@@ -118,6 +119,10 @@ html,body{
       .iconfont {
         color: #3b86e0;
       }
+    }
+    &:active{
+      color: #3b86e0 !important;
+      border-color: #3b86e0 !important;
     }
   }
 }

@@ -8,7 +8,7 @@ module.exports={
     //接口代理地址
     proxy:[{
       //需代理的应用
-      context:['/cas','/mainweb','/public','/formengine'],
+      context:['/cas','/mainweb','/public','/formengine','/bootstrap'],
       //代理目标主机
       target:'http://192.168.10.126',
       //代理域名
@@ -22,7 +22,7 @@ module.exports={
       target:'http://192.168.10.9:8090'
     }],
     //host
-    host:'0.0.0.0',
+    host:'localhost',
     //端口
     port:8081,
     //开发路径别名

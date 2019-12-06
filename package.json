@@ -71,13 +71,8 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
+    "async-validator": "^3.2.0",
     "axios": "^0.19.0",
-    "normalize.css": "^8.0.1",
-    "sha1": "^1.1.1",
-    "southgis-scrollbar": "^1.0.1",
-    "southgisui": "2.7.42",
-    "vue": "^2.6.10",
-    "vuex": "^3.1.1",
     "babel-runtime": "^6.26.0",
     "crypto-js": "^3.1.9-1",
     "element-resize-detector": "^1.1.15",
@@ -85,9 +80,14 @@
     "lodash.clonedeep": "^4.5.0",
     "lodash.debounce": "^4.0.8",
     "lodash.truncate": "^4.4.2",
+    "normalize.css": "^8.0.1",
     "popper.js": "^1.16.0",
+    "sgui-form": "1.0.0",
+    "sha1": "^1.1.1",
+    "southgis-scrollbar": "^1.0.1",
+    "southgisui": "2.7.42",
     "v-click-outside-x": "^4.0.19",
-    "async-validator": "^3.2.0",
-    "sgui-form": "1.0.0"
+    "vue": "^2.6.10",
+    "vuex": "^3.1.1"
   }
 }
