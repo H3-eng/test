@@ -154,16 +154,16 @@ export default {
     }
   },
   mounted() {
-    // Enter login
     if (localStorage.getItem('userName')!=null&&localStorage.getItem('passWord')!=null) {
-      var userName = utils.decrypt(localStorage.getItem('userName'));
-      var passWord = utils.decrypt(localStorage.getItem('passWord'), '');
+      let userName = utils.decrypt(localStorage.getItem('userName'));
+      let passWord = utils.decrypt(localStorage.getItem('passWord'), '');
       this.formValidate.username = userName;
       this.formValidate.password = passWord;
       this.keep = true;
     } else {
       this.keep = false;
     }
+    // Enter login
     document.addEventListener('keydown', this.EnterLogin);
     this.listAllSubSystems()
   },
