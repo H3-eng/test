@@ -120,6 +120,11 @@ export default {
           }
           login.login({params: params})
             .then(res => {
+              //记住密码则存localStorage
+              if (this.keep == true) {
+                localStorage.setItem('userName', utils.encrypt(this.formValidate.username, ''));
+                localStorage.setItem('passWord', utils.encrypt(this.formValidate.password, ''));
+              }
               localStorage.setItem('loginTicket', JSON.stringify(res))
               window.location.href = process.env.NODE_ENV === 'production' ? `/mainProject/home.html?scode=${this.sysname}` : `/home.html?scode=${this.sysname}`
             })
@@ -138,33 +143,26 @@ export default {
     handleRemember(name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          console.log("true")
-          this.keep = !this.keep;
-          if (this.keep == true) {
-            localStorage.setItem('userName', utils.encrypt(this.formValidate.username, ''));
-            localStorage.setItem('passWord', utils.encrypt(this.formValidate.password, ''));
-            localStorage.setItem('state',1);
-          } else if (this.keep == false) {
-            localStorage.removeItem('userName');
-            localStorage.removeItem('passWord');
-            localStorage.removeItem('state');
-          }
+          let rememberStates = this.keep;
+          this.keep = !rememberStates;
         } else {
-          this.keep == false;
+          this.keep = false;
           console.log("error")
         }
       });
+      console.log(this.keep);
     }
   },
   mounted() {
     // Enter login
-    var userName = utils.decrypt(localStorage.getItem('userName'));
-    var passWord = utils.decrypt(localStorage.getItem('passWord'), '');
-    this.keep = localStorage.getItem('state');
-    this.formValidate.username = userName;
-    this.formValidate.password = passWord;
-    if (localStorage.getItem('state') == 1) {
+    if (localStorage.getItem('userName')!=null&&localStorage.getItem('passWord')!=null) {
+      var userName = utils.decrypt(localStorage.getItem('userName'));
+      var passWord = utils.decrypt(localStorage.getItem('passWord'), '');
+      this.formValidate.username = userName;
+      this.formValidate.password = passWord;
       this.keep = true;
+    } else {
+      this.keep = false;
     }
     document.addEventListener('keydown', this.EnterLogin);
     this.listAllSubSystems()
