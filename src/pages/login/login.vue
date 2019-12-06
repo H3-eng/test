@@ -8,14 +8,14 @@
                 <div class="earth"></div>
             </div>
             <div class="wrap">
-                <p class="title">正在登录到{{sysname}}</p>
+                <p class="title">正在登录到{{selectSystem.sysName}}</p>
                 <div class="flex flex-main-between">
                     <p class="login-tip">登录</p>
                     <sg-dropdown :visible="showDropdown">
-                        {{sysname}}
+                        {{selectSystem.sysName}}
                         <sg-icon type="icon-sort-desc"/>
                         <div slot="menu" class="sys-list">
-                            <sg-dropdown-item v-for="item in sysList" @click.native="selectSys(item.sysName)"  :key="item.sysCode">
+                            <sg-dropdown-item v-for="item in sysList" @click.native="selectSys(item)"  :key="item.sysCode">
                                 {{item.sysName}}
                             </sg-dropdown-item>
                         </div>
@@ -82,7 +82,7 @@ export default {
         ]
       },
       //子系统
-      sysname:'',
+      selectSystem:{},
       //子系统列表
       sysList:[],
       //是否展示系统切换
@@ -95,11 +95,11 @@ export default {
       login.listAllSubSystems()
         .then(res=>{
           this.sysList = res;
-          this.sysname = this.sysList[0].sysName;
+          this.selectSystem = this.sysList[0];
         })
     },
-    selectSys(name){
-      this.sysname=name
+    selectSys(item){
+      this.selectSystem=item
       this.showDropdown=false
     },
     /**
@@ -121,7 +121,7 @@ export default {
           login.login({params: params})
             .then(res => {
               localStorage.setItem('loginTicket', JSON.stringify(res))
-              window.location.href = process.env.NODE_ENV === 'production' ? `/mainProject/home.html?scode=${this.sysname}` : `/home.html?scode=${this.sysname}`
+              window.location.href = process.env.NODE_ENV === 'production' ? `/mainProject/home.html?scode=${this.selectSystem.sysCode}` : `/home.html?scode=${this.selectSystem.sysCode}`
             })
             .catch(error => {
               console.log(error);
