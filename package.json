@@ -79,6 +79,7 @@
     "vue": "^2.6.10",
     "vuex": "^3.1.1",
     "babel-runtime": "^6.26.0",
+    "crypto-js": "^3.1.9-1",
     "element-resize-detector": "^1.1.15",
     "js-calendar": "^1.2.3",
     "lodash.clonedeep": "^4.5.0",
