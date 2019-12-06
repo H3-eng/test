@@ -27,24 +27,10 @@
                                         <sg-icon type="icon-tuichu2"></sg-icon>
                                     </span>
                                 </div>
-<!--                                预留接口，切换布局-->
-<!--                                <sg-dropdown-item @click.native="changeLayout">切换布局</sg-dropdown-item>-->
-                                <sg-dropdown-item @click.native="changeSys('dmc')">
+                                <sg-dropdown-item v-for="item in sysList" @click.native="changeSys(item.sysCode)" :key="item.sysCode">
                                     <i class="icon shuju"></i>
-                                    数据管理中心
+                                    {{item.sysName}}
                                 </sg-dropdown-item>
-                                <sg-dropdown-item @click.native="changeSys('os')">
-                                    <i class="icon yunwei"></i>
-                                    运维管理中心
-                                </sg-dropdown-item>
-<!--                                <sg-dropdown-item @click.native="changeSys('app')">-->
-<!--                                    <i class="icon yingyong"></i>-->
-<!--                                    应用服务中心-->
-<!--                                </sg-dropdown-item>-->
-<!--                                <sg-dropdown-item @click.native="changeSys('rmg')">-->
-<!--                                    <i class="icon shenzhen"></i>-->
-<!--                                    深圳成果管理-->
-<!--                                </sg-dropdown-item>-->
                             </div>
                         </sg-dropdown>
                     </div>
@@ -94,6 +80,7 @@
 
 <script>
 import IMenu from '_c/menu/index.vue'
+import login from '@/api/login'
 import {mapGetters,mapMutations} from 'vuex'
 export default {
   name: 'mainProject',
@@ -118,10 +105,13 @@ export default {
       //菜单默认横向
       direction:'vertical',
       //日志默认不显示
-      show:false
+      show:false,
+      //子系统列表
+      sysList:[]
     }
   },
   mounted(){
+    this.listAllSubSystems();
     //进页面,默认选中第一个模块展示,如果第一个没有页面，就继续往下找
     const defaultTab=param=>{
       if(param.pageUrl===''&&param.children[0]){
@@ -139,6 +129,17 @@ export default {
     window.jumpTab=this.setActive
   },
   methods:{
+    /**
+     * @Description:获取用户可选系统列表
+     * @author xiejiahui
+     * @date 2019/12/06
+     */
+    listAllSubSystems(){
+      login.listAllSubSystems()
+        .then(res=>{
+          this.sysList = res;
+        })
+    },
     /**
     * @Description:vuex方法
     * @author huangjianhui
