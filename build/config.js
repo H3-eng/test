@@ -17,9 +17,13 @@ module.exports={
       hostRewrite:'localhost:8081'
     },{
       //需代理的应用
-      context:['/logUpdate'],
+      context:['/api'],
       //代理目标主机
-      target:'http://192.168.10.9:8090'
+      target:'http://api.zhuishushenqi.com',
+      changeOrigin: true,
+      pathRewrite:{
+        '^/api':''
+      }
     }],
     //host
     host:'localhost',

@@ -130,7 +130,7 @@ export default {
           login.login({params: params})
             .then(res => {
               localStorage.setItem('loginTicket', JSON.stringify(res))
-              window.location.href = process.env.NODE_ENV === 'production' ? `/mainProject/home.html?scode=${this.sysname}` : `/home.html?scode=${this.sysname}`
+              window.location.href = process.env.NODE_ENV === 'production' ? `/mainProject/header.html?scode=${this.sysname}` : `/header.html?scode=${this.sysname}`
             })
             .catch(error => {
               console.log(error);

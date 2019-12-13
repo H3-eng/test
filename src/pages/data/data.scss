@@ -1,0 +1,111 @@
+.right {
+  padding: 80px;
+  .title {
+    font-size: 14px;
+    font-weight: bold;
+    height: 100px;
+    line-height: 100px;
+  }
+  .sg-form{
+    font-weight: 500;
+    .sg-form-item{
+      position: relative;
+      margin-bottom: 10px;
+      .sg-form-item-label{
+        text-align: left;
+      }
+      .sg-input{
+        width: 981px;
+      }
+      &.contain {
+        &.sg-form-item-required{
+          .sg-form-item-label:before{
+            content: '';
+          }
+        }
+        .dot{
+          position: absolute;
+          color: #ff4064;
+          z-index: 20;
+          left:-10px;
+        }
+        .input-group{
+          display: inline-block;
+          width: 853px;
+          .sg-input{
+            width: 853px;
+          }
+        }
+        .switch{
+          display: inline-block;
+          margin-left: 30px;
+          .switch-anim{
+            vertical-align: middle;
+            width: 45px;
+            height: 25px;
+            position: relative;
+            border: 1px solid #dfdfdf;
+            background-color: #fdfdfd;
+            box-shadow: #dfdfdf 0 0 0 0 inset;
+            border-radius: 20px;
+            background-clip: content-box;
+            display: inline-block;
+            -webkit-appearance: none;
+            user-select: none;
+            outline: none;
+            transition: border cubic-bezier(0, 0, 0, 1) 0.4s, box-shadow cubic-bezier(0, 0, 0, 1) 0.4s;
+            &:before {
+              content: '';
+              width: 21px;
+              height: 21px;
+              position: absolute;
+              top: 0;
+              left: 0;
+              border-radius: 20px;
+              background-color: #fff;
+              box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+              transition: left 0.3s;
+            }
+            &:checked {
+              border-color: #3b86e0;
+              box-shadow: #3b86e0 0 0 0 16px inset;
+              background-color: #3b86e0;
+              transition: border ease 0.4s, box-shadow ease 0.4s, background-color ease 1.2s;
+              &:before {
+                left: 22px;
+                transition: left 0.3s;
+              }
+            }
+          }
+
+        }
+      }
+      &.import{
+        button{
+          width: 50px;
+          height: 27px;
+          padding: 0;
+        }
+      }
+      &.declare {
+        .sg-input {
+          height: 72px;
+        }
+      }
+      &.rule{
+        button{
+          width: 50px;
+          height: 27px;
+          padding: 0;
+        }
+      }
+      &.btngroup{
+        button{
+          width: 80px;
+          height: 36px;
+          padding: 0;
+        }
+      }
+    }
+  }
+}

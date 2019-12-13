@@ -1,4 +1,5 @@
+import axios from 'axios'
 export default {
   //获取用户信息
-  mpdata:(data)=>axios.get('/mainweb/mpdata',data)
+  statistics:()=>axios.get('/api/cats/lv2/statistics')
 }
